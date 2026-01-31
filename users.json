@@ -1,0 +1,37 @@
+[
+  {
+    "id": "user-001",
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "role": "Senior Developer",
+    "skills": ["JavaScript", "Python", "React", "Node.js"]
+  },
+  {
+    "id": "user-002",
+    "name": "Jane Smith",
+    "email": "jane.smith@example.com",
+    "role": "UI/UX Designer",
+    "skills": ["Figma", "Adobe XD", "Wireframing", "User Research"]
+  },
+  {
+    "id": "user-003",
+    "name": "Mike Johnson",
+    "email": "mike.johnson@example.com",
+    "role": "Backend Developer",
+    "skills": ["Java", "Spring Boot", "PostgreSQL", "Docker"]
+  },
+  {
+    "id": "user-004",
+    "name": "Sarah Williams",
+    "email": "sarah.williams@example.com",
+    "role": "QA Engineer",
+    "skills": ["Manual Testing", "Selenium", "Jest", "Test Automation"]
+  },
+  {
+    "id": "user-005",
+    "name": "David Brown",
+    "email": "david.brown@example.com",
+    "role": "Project Manager",
+    "skills": ["Agile", "Scrum", "Jira", "Team Leadership"]
+  }
+]

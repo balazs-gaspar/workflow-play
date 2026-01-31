@@ -1,0 +1,191 @@
+[
+  {
+    "id": "task-001",
+    "name": "Create wireframes for dashboard",
+    "status": "completed",
+    "owner": {
+      "id": "user-002",
+      "name": "Jane Smith"
+    },
+    "team": {
+      "id": "team-001",
+      "name": "Development Team A"
+    },
+    "dependencies": [],
+    "description": "Design wireframes for the main dashboard interface",
+    "estimatedHours": 8,
+    "actualHours": 7,
+    "priority": "high",
+    "createdAt": "2026-01-15T09:00:00Z",
+    "updatedAt": "2026-01-17T16:00:00Z",
+    "completedAt": "2026-01-17T16:00:00Z"
+  },
+  {
+    "id": "task-002",
+    "name": "Design user flow diagrams",
+    "status": "completed",
+    "owner": {
+      "id": "user-002",
+      "name": "Jane Smith"
+    },
+    "team": {
+      "id": "team-001",
+      "name": "Development Team A"
+    },
+    "dependencies": [],
+    "description": "Create user flow diagrams for key features",
+    "estimatedHours": 6,
+    "actualHours": 5,
+    "priority": "medium",
+    "createdAt": "2026-01-15T09:00:00Z",
+    "updatedAt": "2026-01-18T14:30:00Z",
+    "completedAt": "2026-01-18T14:30:00Z"
+  },
+  {
+    "id": "task-003",
+    "name": "Implement dashboard frontend",
+    "status": "in progress",
+    "owner": {
+      "id": "user-001",
+      "name": "John Doe"
+    },
+    "team": {
+      "id": "team-001",
+      "name": "Development Team A"
+    },
+    "dependencies": ["task-001"],
+    "description": "Build the dashboard UI based on approved wireframes",
+    "estimatedHours": 16,
+    "actualHours": 10,
+    "priority": "high",
+    "createdAt": "2026-01-18T10:00:00Z",
+    "updatedAt": "2026-01-31T15:30:00Z",
+    "completedAt": null
+  },
+  {
+    "id": "task-004",
+    "name": "Create REST API endpoints",
+    "status": "in progress",
+    "owner": {
+      "id": "user-003",
+      "name": "Mike Johnson"
+    },
+    "team": {
+      "id": "team-001",
+      "name": "Development Team A"
+    },
+    "dependencies": [],
+    "description": "Develop REST API for data access",
+    "estimatedHours": 20,
+    "actualHours": 12,
+    "priority": "high",
+    "createdAt": "2026-01-18T10:00:00Z",
+    "updatedAt": "2026-01-31T14:00:00Z",
+    "completedAt": null
+  },
+  {
+    "id": "task-005",
+    "name": "Set up database schema",
+    "status": "completed",
+    "owner": {
+      "id": "user-003",
+      "name": "Mike Johnson"
+    },
+    "team": {
+      "id": "team-001",
+      "name": "Development Team A"
+    },
+    "dependencies": [],
+    "description": "Design and implement database schema",
+    "estimatedHours": 8,
+    "actualHours": 9,
+    "priority": "critical",
+    "createdAt": "2026-01-16T09:00:00Z",
+    "updatedAt": "2026-01-19T17:00:00Z",
+    "completedAt": "2026-01-19T17:00:00Z"
+  },
+  {
+    "id": "task-006",
+    "name": "Integration testing",
+    "status": "pending",
+    "owner": {
+      "id": "user-004",
+      "name": "Sarah Williams"
+    },
+    "team": {
+      "id": "team-002",
+      "name": "QA Team"
+    },
+    "dependencies": ["task-003", "task-004"],
+    "description": "Perform integration testing for dashboard and API",
+    "estimatedHours": 12,
+    "actualHours": 0,
+    "priority": "high",
+    "createdAt": "2026-01-20T10:00:00Z",
+    "updatedAt": "2026-01-20T10:00:00Z",
+    "completedAt": null
+  },
+  {
+    "id": "task-007",
+    "name": "Gather client requirements",
+    "status": "new",
+    "owner": {
+      "id": "user-005",
+      "name": "David Brown"
+    },
+    "team": {
+      "id": "team-003",
+      "name": "Project Management"
+    },
+    "dependencies": [],
+    "description": "Initial meeting with client to gather requirements",
+    "estimatedHours": 4,
+    "actualHours": 0,
+    "priority": "high",
+    "createdAt": "2026-01-30T09:00:00Z",
+    "updatedAt": "2026-01-30T09:00:00Z",
+    "completedAt": null
+  },
+  {
+    "id": "task-008",
+    "name": "Build MVP features",
+    "status": "completed",
+    "owner": {
+      "id": "user-001",
+      "name": "John Doe"
+    },
+    "team": {
+      "id": "team-001",
+      "name": "Development Team A"
+    },
+    "dependencies": [],
+    "description": "Implement core MVP functionality",
+    "estimatedHours": 40,
+    "actualHours": 45,
+    "priority": "critical",
+    "createdAt": "2025-12-02T09:00:00Z",
+    "updatedAt": "2026-01-10T18:00:00Z",
+    "completedAt": "2026-01-10T18:00:00Z"
+  },
+  {
+    "id": "task-009",
+    "name": "Deploy to production",
+    "status": "completed",
+    "owner": {
+      "id": "user-003",
+      "name": "Mike Johnson"
+    },
+    "team": {
+      "id": "team-001",
+      "name": "Development Team A"
+    },
+    "dependencies": ["task-008"],
+    "description": "Deploy MVP to production environment",
+    "estimatedHours": 8,
+    "actualHours": 6,
+    "priority": "critical",
+    "createdAt": "2026-01-11T09:00:00Z",
+    "updatedAt": "2026-01-20T16:00:00Z",
+    "completedAt": "2026-01-20T16:00:00Z"
+  }
+]

@@ -68,7 +68,7 @@ A task represents a single unit of work within a workflow module.
 | `id` | UUID/String | Unique identifier for the task |
 | `name` | String | Descriptive name of the task |
 | `status` | Enum | Current status: `pending`, `new`, `in progress`, `completed`, `cancelled` |
-| `assignedTo` | Reference | Reference to the user assigned to complete the task |
+| `owner` | Reference | Reference to the user assigned to complete the task |
 | `team` | Reference | Reference to the team responsible for the task |
 | `dependencies` | Array | List of task IDs that must be completed before this task can start |
 | `description` | String | Detailed description of the task (optional) |
@@ -94,7 +94,7 @@ pending → new → in progress → completed
   "id": "task-001",
   "name": "Create wireframes for dashboard",
   "status": "in progress",
-  "assignedTo": {
+  "owner": {
     "id": "user-101",
     "name": "Jane Smith"
   },

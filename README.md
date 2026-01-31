@@ -8,8 +8,8 @@ The system is designed to manage workflows with associated tasks, teams, and cli
 
 ## Documentation
 
-- **[MODELS.md](MODELS.md)** - Core data models for workflows and tasks
-- **[TECH_STACK.md](TECH_STACK.md)** - Recommended technology stack for the recommendation system
+- **[MODELS.md](.github/MODELS.md)** - Core data models for workflows and tasks
+- **Mock Data** - Sample JSON files in the repository root demonstrating the data structure
 
 ## Key Features
 
@@ -21,4 +21,4 @@ The system is designed to manage workflows with associated tasks, teams, and cli
 
 ## Getting Started
 
-Refer to the documentation files above to understand the data models and technology stack recommendations.
+Refer to the documentation files above to understand the data models. The mock JSON files provide example data that demonstrates the structure of workflows, tasks, teams, clients, and users.

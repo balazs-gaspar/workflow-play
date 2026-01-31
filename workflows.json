@@ -1,0 +1,97 @@
+[
+  {
+    "id": "workflow-001",
+    "status": "in progress",
+    "client": {
+      "id": "client-001",
+      "name": "Acme Corporation"
+    },
+    "team": {
+      "id": "team-001",
+      "name": "Development Team A"
+    },
+    "owner": {
+      "id": "user-005",
+      "name": "David Brown"
+    },
+    "modules": [
+      {
+        "id": "module-001",
+        "name": "Design Phase",
+        "description": "Initial design and wireframing",
+        "order": 1,
+        "tasks": ["task-001", "task-002"]
+      },
+      {
+        "id": "module-002",
+        "name": "Development Phase",
+        "description": "Implementation of core features",
+        "order": 2,
+        "tasks": ["task-003", "task-004", "task-005"]
+      },
+      {
+        "id": "module-003",
+        "name": "Testing Phase",
+        "description": "Quality assurance and testing",
+        "order": 3,
+        "tasks": ["task-006"]
+      }
+    ],
+    "createdAt": "2026-01-15T10:00:00Z",
+    "updatedAt": "2026-01-31T15:30:00Z"
+  },
+  {
+    "id": "workflow-002",
+    "status": "new",
+    "client": {
+      "id": "client-002",
+      "name": "TechStart Inc"
+    },
+    "team": {
+      "id": "team-001",
+      "name": "Development Team A"
+    },
+    "owner": {
+      "id": "user-005",
+      "name": "David Brown"
+    },
+    "modules": [
+      {
+        "id": "module-004",
+        "name": "Requirements Gathering",
+        "description": "Collect and document requirements",
+        "order": 1,
+        "tasks": ["task-007"]
+      }
+    ],
+    "createdAt": "2026-01-30T09:00:00Z",
+    "updatedAt": "2026-01-30T09:00:00Z"
+  },
+  {
+    "id": "workflow-003",
+    "status": "completed",
+    "client": {
+      "id": "client-003",
+      "name": "Global Solutions Ltd"
+    },
+    "team": {
+      "id": "team-001",
+      "name": "Development Team A"
+    },
+    "owner": {
+      "id": "user-005",
+      "name": "David Brown"
+    },
+    "modules": [
+      {
+        "id": "module-005",
+        "name": "MVP Development",
+        "description": "Minimum viable product",
+        "order": 1,
+        "tasks": ["task-008", "task-009"]
+      }
+    ],
+    "createdAt": "2025-12-01T10:00:00Z",
+    "updatedAt": "2026-01-20T16:00:00Z"
+  }
+]

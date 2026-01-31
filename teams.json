@@ -1,0 +1,20 @@
+[
+  {
+    "id": "team-001",
+    "name": "Development Team A",
+    "members": ["user-001", "user-002", "user-003"],
+    "capabilities": ["Frontend Development", "Backend Development", "UI/UX Design", "API Development"]
+  },
+  {
+    "id": "team-002",
+    "name": "QA Team",
+    "members": ["user-004"],
+    "capabilities": ["Testing", "Quality Assurance", "Test Automation"]
+  },
+  {
+    "id": "team-003",
+    "name": "Project Management",
+    "members": ["user-005"],
+    "capabilities": ["Project Planning", "Resource Allocation", "Stakeholder Management"]
+  }
+]
