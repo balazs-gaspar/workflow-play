@@ -175,7 +175,7 @@ A module groups related tasks within a workflow.
 
 For optimal query performance, consider indexing:
 - Workflow: `status`, `client.id`, `team.id`, `owner.id`
-- Task: `status`, `assignedTo.id`, `team.id`, `dependencies`
+- Task: `status`, `owner.id`, `team.id`, `dependencies`
 - Composite indexes: `(status, updatedAt)`, `(team.id, status)`
 
 ### Data Integrity
