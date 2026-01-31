@@ -1,7 +1,8 @@
 [
   {
-    "id": "task-001",
-    "name": "Create wireframes for dashboard",
+    "id": "task-inst-001",
+    "taskDefinitionId": "task-def-001",
+    "workflowInstanceId": "wf-inst-001",
     "status": "completed",
     "owner": {
       "id": "user-002",
@@ -12,17 +13,17 @@
       "name": "Development Team A"
     },
     "dependencies": [],
-    "description": "Design wireframes for the main dashboard interface",
-    "estimatedHours": 8,
-    "actualHours": 7,
     "priority": "high",
+    "actualHours": 7,
     "createdAt": "2026-01-15T09:00:00Z",
     "updatedAt": "2026-01-17T16:00:00Z",
+    "startedAt": "2026-01-15T10:00:00Z",
     "completedAt": "2026-01-17T16:00:00Z"
   },
   {
-    "id": "task-002",
-    "name": "Design user flow diagrams",
+    "id": "task-inst-002",
+    "taskDefinitionId": "task-def-002",
+    "workflowInstanceId": "wf-inst-001",
     "status": "completed",
     "owner": {
       "id": "user-002",
@@ -33,17 +34,38 @@
       "name": "Development Team A"
     },
     "dependencies": [],
-    "description": "Create user flow diagrams for key features",
-    "estimatedHours": 6,
-    "actualHours": 5,
     "priority": "medium",
+    "actualHours": 5,
     "createdAt": "2026-01-15T09:00:00Z",
     "updatedAt": "2026-01-18T14:30:00Z",
+    "startedAt": "2026-01-15T10:00:00Z",
     "completedAt": "2026-01-18T14:30:00Z"
   },
   {
-    "id": "task-003",
-    "name": "Implement dashboard frontend",
+    "id": "task-inst-003",
+    "taskDefinitionId": "task-def-003",
+    "workflowInstanceId": "wf-inst-001",
+    "status": "completed",
+    "owner": {
+      "id": "user-002",
+      "name": "Jane Smith"
+    },
+    "team": {
+      "id": "team-001",
+      "name": "Development Team A"
+    },
+    "dependencies": ["task-inst-001"],
+    "priority": "medium",
+    "actualHours": 4,
+    "createdAt": "2026-01-17T10:00:00Z",
+    "updatedAt": "2026-01-19T15:00:00Z",
+    "startedAt": "2026-01-17T16:30:00Z",
+    "completedAt": "2026-01-19T15:00:00Z"
+  },
+  {
+    "id": "task-inst-004",
+    "taskDefinitionId": "task-def-004",
+    "workflowInstanceId": "wf-inst-001",
     "status": "in progress",
     "owner": {
       "id": "user-001",
@@ -53,18 +75,18 @@
       "id": "team-001",
       "name": "Development Team A"
     },
-    "dependencies": ["task-001"],
-    "description": "Build the dashboard UI based on approved wireframes",
-    "estimatedHours": 16,
-    "actualHours": 10,
+    "dependencies": ["task-inst-001"],
     "priority": "high",
+    "actualHours": 10,
     "createdAt": "2026-01-18T10:00:00Z",
     "updatedAt": "2026-01-31T15:30:00Z",
+    "startedAt": "2026-01-18T11:00:00Z",
     "completedAt": null
   },
   {
-    "id": "task-004",
-    "name": "Create REST API endpoints",
+    "id": "task-inst-005",
+    "taskDefinitionId": "task-def-005",
+    "workflowInstanceId": "wf-inst-001",
     "status": "in progress",
     "owner": {
       "id": "user-003",
@@ -74,18 +96,18 @@
       "id": "team-001",
       "name": "Development Team A"
     },
-    "dependencies": [],
-    "description": "Develop REST API for data access",
-    "estimatedHours": 20,
-    "actualHours": 12,
+    "dependencies": ["task-inst-006"],
     "priority": "high",
+    "actualHours": 12,
     "createdAt": "2026-01-18T10:00:00Z",
     "updatedAt": "2026-01-31T14:00:00Z",
+    "startedAt": "2026-01-19T18:00:00Z",
     "completedAt": null
   },
   {
-    "id": "task-005",
-    "name": "Set up database schema",
+    "id": "task-inst-006",
+    "taskDefinitionId": "task-def-006",
+    "workflowInstanceId": "wf-inst-001",
     "status": "completed",
     "owner": {
       "id": "user-003",
@@ -96,17 +118,17 @@
       "name": "Development Team A"
     },
     "dependencies": [],
-    "description": "Design and implement database schema",
-    "estimatedHours": 8,
-    "actualHours": 9,
     "priority": "critical",
+    "actualHours": 9,
     "createdAt": "2026-01-16T09:00:00Z",
     "updatedAt": "2026-01-19T17:00:00Z",
+    "startedAt": "2026-01-16T10:00:00Z",
     "completedAt": "2026-01-19T17:00:00Z"
   },
   {
-    "id": "task-006",
-    "name": "Integration testing",
+    "id": "task-inst-007",
+    "taskDefinitionId": "task-def-007",
+    "workflowInstanceId": "wf-inst-001",
     "status": "pending",
     "owner": {
       "id": "user-004",
@@ -116,18 +138,18 @@
       "id": "team-002",
       "name": "QA Team"
     },
-    "dependencies": ["task-003", "task-004"],
-    "description": "Perform integration testing for dashboard and API",
-    "estimatedHours": 12,
-    "actualHours": 0,
+    "dependencies": ["task-inst-004", "task-inst-005"],
     "priority": "high",
+    "actualHours": 0,
     "createdAt": "2026-01-20T10:00:00Z",
     "updatedAt": "2026-01-20T10:00:00Z",
+    "startedAt": null,
     "completedAt": null
   },
   {
-    "id": "task-007",
-    "name": "Gather client requirements",
+    "id": "task-inst-008",
+    "taskDefinitionId": "task-def-008",
+    "workflowInstanceId": "wf-inst-002",
     "status": "new",
     "owner": {
       "id": "user-005",
@@ -138,17 +160,17 @@
       "name": "Project Management"
     },
     "dependencies": [],
-    "description": "Initial meeting with client to gather requirements",
-    "estimatedHours": 4,
-    "actualHours": 0,
     "priority": "high",
+    "actualHours": 0,
     "createdAt": "2026-01-30T09:00:00Z",
     "updatedAt": "2026-01-30T09:00:00Z",
+    "startedAt": null,
     "completedAt": null
   },
   {
-    "id": "task-008",
-    "name": "Build MVP features",
+    "id": "task-inst-009",
+    "taskDefinitionId": "task-def-004",
+    "workflowInstanceId": "wf-inst-003",
     "status": "completed",
     "owner": {
       "id": "user-001",
@@ -159,17 +181,17 @@
       "name": "Development Team A"
     },
     "dependencies": [],
-    "description": "Implement core MVP functionality",
-    "estimatedHours": 40,
-    "actualHours": 45,
     "priority": "critical",
+    "actualHours": 18,
     "createdAt": "2025-12-02T09:00:00Z",
     "updatedAt": "2026-01-10T18:00:00Z",
+    "startedAt": "2025-12-02T10:00:00Z",
     "completedAt": "2026-01-10T18:00:00Z"
   },
   {
-    "id": "task-009",
-    "name": "Deploy to production",
+    "id": "task-inst-010",
+    "taskDefinitionId": "task-def-009",
+    "workflowInstanceId": "wf-inst-003",
     "status": "completed",
     "owner": {
       "id": "user-003",
@@ -179,13 +201,12 @@
       "id": "team-001",
       "name": "Development Team A"
     },
-    "dependencies": ["task-008"],
-    "description": "Deploy MVP to production environment",
-    "estimatedHours": 8,
-    "actualHours": 6,
+    "dependencies": ["task-inst-009"],
     "priority": "critical",
+    "actualHours": 6,
     "createdAt": "2026-01-11T09:00:00Z",
     "updatedAt": "2026-01-20T16:00:00Z",
+    "startedAt": "2026-01-11T10:00:00Z",
     "completedAt": "2026-01-20T16:00:00Z"
   }
 ]

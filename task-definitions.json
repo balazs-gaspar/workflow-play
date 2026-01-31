@@ -1,0 +1,92 @@
+[
+  {
+    "id": "task-def-001",
+    "name": "Create wireframes",
+    "description": "Design wireframes for user interfaces",
+    "estimatedHours": 8,
+    "requiredSkills": ["Figma", "UI/UX Design", "Wireframing"],
+    "category": "Design",
+    "createdAt": "2026-01-01T10:00:00Z",
+    "updatedAt": "2026-01-01T10:00:00Z"
+  },
+  {
+    "id": "task-def-002",
+    "name": "User research",
+    "description": "Conduct user research and gather requirements",
+    "estimatedHours": 6,
+    "requiredSkills": ["User Research", "Interview Techniques", "Analysis"],
+    "category": "Research",
+    "createdAt": "2026-01-01T10:00:00Z",
+    "updatedAt": "2026-01-01T10:00:00Z"
+  },
+  {
+    "id": "task-def-003",
+    "name": "Design validation",
+    "description": "Validate designs with stakeholders and users",
+    "estimatedHours": 4,
+    "requiredSkills": ["Presentation", "Communication", "User Testing"],
+    "category": "Validation",
+    "createdAt": "2026-01-01T10:00:00Z",
+    "updatedAt": "2026-01-01T10:00:00Z"
+  },
+  {
+    "id": "task-def-004",
+    "name": "Frontend implementation",
+    "description": "Implement frontend components based on designs",
+    "estimatedHours": 16,
+    "requiredSkills": ["JavaScript", "React", "CSS", "HTML"],
+    "category": "Development",
+    "createdAt": "2026-01-01T10:00:00Z",
+    "updatedAt": "2026-01-01T10:00:00Z"
+  },
+  {
+    "id": "task-def-005",
+    "name": "Backend API development",
+    "description": "Develop REST API endpoints",
+    "estimatedHours": 20,
+    "requiredSkills": ["Java", "Spring Boot", "REST API", "PostgreSQL"],
+    "category": "Development",
+    "createdAt": "2026-01-01T10:00:00Z",
+    "updatedAt": "2026-01-01T10:00:00Z"
+  },
+  {
+    "id": "task-def-006",
+    "name": "Database schema design",
+    "description": "Design and implement database schema",
+    "estimatedHours": 8,
+    "requiredSkills": ["SQL", "Database Design", "PostgreSQL"],
+    "category": "Development",
+    "createdAt": "2026-01-01T10:00:00Z",
+    "updatedAt": "2026-01-01T10:00:00Z"
+  },
+  {
+    "id": "task-def-007",
+    "name": "Integration testing",
+    "description": "Perform integration testing between components",
+    "estimatedHours": 12,
+    "requiredSkills": ["Testing", "Selenium", "Jest", "Test Automation"],
+    "category": "Testing",
+    "createdAt": "2026-01-01T10:00:00Z",
+    "updatedAt": "2026-01-01T10:00:00Z"
+  },
+  {
+    "id": "task-def-008",
+    "name": "Requirements gathering",
+    "description": "Gather and document project requirements",
+    "estimatedHours": 4,
+    "requiredSkills": ["Communication", "Documentation", "Requirements Analysis"],
+    "category": "Planning",
+    "createdAt": "2026-01-01T10:00:00Z",
+    "updatedAt": "2026-01-01T10:00:00Z"
+  },
+  {
+    "id": "task-def-009",
+    "name": "Production deployment",
+    "description": "Deploy application to production environment",
+    "estimatedHours": 8,
+    "requiredSkills": ["DevOps", "Docker", "CI/CD", "Cloud Platforms"],
+    "category": "Deployment",
+    "createdAt": "2026-01-01T10:00:00Z",
+    "updatedAt": "2026-01-01T10:00:00Z"
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "wf-inst-001",
+    "workflowDefinitionId": "wf-def-001",
+    "status": "in progress",
+    "client": {
+      "id": "client-001",
+      "name": "Acme Corporation"
+    },
+    "team": {
+      "id": "team-001",
+      "name": "Development Team A"
+    },
+    "owner": {
+      "id": "user-005",
+      "name": "David Brown"
+    },
+    "taskInstances": ["task-inst-001", "task-inst-002", "task-inst-003", "task-inst-004", "task-inst-005", "task-inst-006", "task-inst-007"],
+    "createdAt": "2026-01-15T10:00:00Z",
+    "updatedAt": "2026-01-31T15:30:00Z",
+    "startedAt": "2026-01-15T10:00:00Z",
+    "completedAt": null
+  },
+  {
+    "id": "wf-inst-002",
+    "workflowDefinitionId": "wf-def-004",
+    "status": "new",
+    "client": {
+      "id": "client-002",
+      "name": "TechStart Inc"
+    },
+    "team": {
+      "id": "team-003",
+      "name": "Project Management"
+    },
+    "owner": {
+      "id": "user-005",
+      "name": "David Brown"
+    },
+    "taskInstances": ["task-inst-008"],
+    "createdAt": "2026-01-30T09:00:00Z",
+    "updatedAt": "2026-01-30T09:00:00Z",
+    "startedAt": null,
+    "completedAt": null
+  },
+  {
+    "id": "wf-inst-003",
+    "workflowDefinitionId": "wf-def-003",
+    "status": "completed",
+    "client": {
+      "id": "client-003",
+      "name": "Global Solutions Ltd"
+    },
+    "team": {
+      "id": "team-001",
+      "name": "Development Team A"
+    },
+    "owner": {
+      "id": "user-005",
+      "name": "David Brown"
+    },
+    "taskInstances": ["task-inst-009", "task-inst-010"],
+    "createdAt": "2025-12-01T10:00:00Z",
+    "updatedAt": "2026-01-20T16:00:00Z",
+    "startedAt": "2025-12-01T10:00:00Z",
+    "completedAt": "2026-01-20T16:00:00Z"
+  }
+]
