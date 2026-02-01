@@ -23,7 +23,7 @@ A task definition is a reusable template that describes a type of work.
 
 ## Module Definition Model
 
-A module definition represents a functional area or category of work with assigned ownership and team responsibility.
+A module definition represents a functional area or category of work.
 
 ### Attributes
 
@@ -32,8 +32,6 @@ A module definition represents a functional area or category of work with assign
 | `id` | UUID/String | Unique identifier for the module |
 | `name` | String | Name of the module (e.g., "Design", "Development", "Testing") |
 | `description` | String | Description of the module's purpose and scope |
-| `owner` | Reference | Reference to the user who owns the module |
-| `team` | Reference | Reference to the team responsible for the module |
 
 ### Example Structure
 
@@ -41,15 +39,7 @@ A module definition represents a functional area or category of work with assign
 {
   "id": "module-004",
   "name": "Development",
-  "description": "Software development and implementation",
-  "owner": {
-    "id": "user-001",
-    "name": "John Doe"
-  },
-  "team": {
-    "id": "team-001",
-    "name": "Development Team A"
-  }
+  "description": "Software development and implementation"
 }
 ```
 
@@ -66,7 +56,7 @@ A task instance represents an actual execution of a task definition within a wor
 | `status` | Enum | Current status: `pending`, `new`, `in progress`, `completed`, `cancelled` |
 | `owner` | Reference | Reference to the user assigned to complete the task |
 | `team` | Reference | Reference to the team responsible for the task |
-| `module` | Object | Module information containing id, name, owner, and team from the module definition |
+| `module` | Object | Module information containing id and name from the module definition |
 | `priority` | Enum | Task priority: `low`, `medium`, `high`, `critical` |
 | `dependencies` | Array | List of task instance IDs that must be completed before this task can start |
 | `actualHours` | Number | Actual time spent on the task |
@@ -100,15 +90,7 @@ pending → new → in progress → completed
   },
   "module": {
     "id": "module-001",
-    "name": "Design",
-    "owner": {
-      "id": "user-002",
-      "name": "Jane Smith"
-    },
-    "team": {
-      "id": "team-001",
-      "name": "Development Team A"
-    }
+    "name": "Design"
   },
   "priority": "high",
   "dependencies": [],
@@ -284,7 +266,6 @@ new → in progress → completed
 - A **Workflow Definition** references multiple **Task Definitions**
 - **Task Definitions** are reusable across multiple workflow definitions
 - A **Task Definition** references one **Module Definition**
-- A **Module Definition** has an **Owner** (User) and a **Team**
 
 ### Instance Level
 - A **Workflow Instance** is created from a **Workflow Definition**
@@ -294,7 +275,7 @@ new → in progress → completed
 - A **Workflow Instance** contains multiple **Task Instances** (embedded)
 - A **Task Instance** is created from a **Task Definition**
 - A **Task Instance** is embedded within one **Workflow Instance**
-- A **Task Instance** contains **Module** information (id, name, owner, team) from the associated Module Definition
+- A **Task Instance** contains **Module** information (id and name) from the associated Module Definition
 - A **Task Instance** is assigned to one **User** (owner)
 - A **Task Instance** belongs to one **Team**
 - A **Task Instance** can have multiple **Dependencies** (other Task Instances)
@@ -305,7 +286,7 @@ new → in progress → completed
 ### Tables/Collections
 
 1. **task_definitions** - Reusable task templates
-2. **module_definitions** - Module definitions with ownership and team assignment
+2. **module_definitions** - Module definitions
 3. **workflow_instances** - Actual workflow executions (with embedded task instances and workflow definition references)
 4. **users** - User records
 5. **teams** - Team records
@@ -318,7 +299,7 @@ new → in progress → completed
 For optimal query performance, consider indexing:
 - **workflow_instances**: `workflowDefinitionId`, `status`, `client.id`, `team.id`, `owner.id`, `taskInstances.status`, `taskInstances.owner.id`, `taskInstances.module.id`, `taskInstances.dependencies`
 - **task_definitions**: `module`, `requiredSkills`
-- **module_definitions**: `name`, `owner.id`, `team.id`
+- **module_definitions**: `name`
 - Composite indexes: `(status, updatedAt)`, `(team.id, status)`
 
 ### Data Integrity

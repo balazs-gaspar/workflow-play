@@ -2,92 +2,36 @@
   {
     "id": "module-001",
     "name": "Design",
-    "description": "UI/UX design and wireframing tasks",
-    "owner": {
-      "id": "user-002",
-      "name": "Jane Smith"
-    },
-    "team": {
-      "id": "team-001",
-      "name": "Development Team A"
-    }
+    "description": "UI/UX design and wireframing tasks"
   },
   {
     "id": "module-002",
     "name": "Research",
-    "description": "User research and requirements analysis",
-    "owner": {
-      "id": "user-002",
-      "name": "Jane Smith"
-    },
-    "team": {
-      "id": "team-001",
-      "name": "Development Team A"
-    }
+    "description": "User research and requirements analysis"
   },
   {
     "id": "module-003",
     "name": "Validation",
-    "description": "Design validation and stakeholder review",
-    "owner": {
-      "id": "user-002",
-      "name": "Jane Smith"
-    },
-    "team": {
-      "id": "team-001",
-      "name": "Development Team A"
-    }
+    "description": "Design validation and stakeholder review"
   },
   {
     "id": "module-004",
     "name": "Development",
-    "description": "Software development and implementation",
-    "owner": {
-      "id": "user-001",
-      "name": "John Doe"
-    },
-    "team": {
-      "id": "team-001",
-      "name": "Development Team A"
-    }
+    "description": "Software development and implementation"
   },
   {
     "id": "module-005",
     "name": "Testing",
-    "description": "Quality assurance and testing",
-    "owner": {
-      "id": "user-004",
-      "name": "Sarah Williams"
-    },
-    "team": {
-      "id": "team-002",
-      "name": "QA Team"
-    }
+    "description": "Quality assurance and testing"
   },
   {
     "id": "module-006",
     "name": "Planning",
-    "description": "Project planning and requirements gathering",
-    "owner": {
-      "id": "user-005",
-      "name": "David Brown"
-    },
-    "team": {
-      "id": "team-003",
-      "name": "Project Management"
-    }
+    "description": "Project planning and requirements gathering"
   },
   {
     "id": "module-007",
     "name": "Deployment",
-    "description": "Application deployment and DevOps",
-    "owner": {
-      "id": "user-003",
-      "name": "Mike Johnson"
-    },
-    "team": {
-      "id": "team-001",
-      "name": "Development Team A"
-    }
+    "description": "Application deployment and DevOps"
   }
 ]
