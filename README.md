@@ -1,23 +1,32 @@
 # Workflow Management & Recommendation System POC
 
-This project demonstrates workflow management application data set and serves as a Proof of Concept (POC) for a recommendation system.
+This project demonstrates a workflow management application data set using a relational model approach and serves as a Proof of Concept (POC) for a recommendation system.
 
 ## Overview
 
-The system separates **definitions** (reusable templates) from **instances** (actual executions). This allows you to:
-- Define reusable workflow and task templates
-- Create multiple instances from the same template for different clients
-- Track actual executions separately from templates
+The system uses a relational database approach with separate definition models for workflows, modules, tasks, and task dependencies. This allows for flexible reuse and composition of workflow components.
 
 ## Architecture
 
-### Definitions (Templates)
-- **Workflow Definitions**: Reusable workflow templates (e.g., "Dashboard Design Workflow")
-- **Task Definitions**: Reusable task templates (e.g., "Create wireframes")
+### Definition Models
 
-### Instances (Executions)
-- **Workflow Instances**: Actual workflow executions for specific clients (with embedded task instances)
-- **Task Instances**: Actual task executions embedded within workflow instances
+The system separates workflow definitions into four related entities:
+
+1. **WorkflowDefinition** - High-level workflow metadata
+   - id, name, description, version, createdAt
+
+2. **ModuleDefinition** - Modules that belong to workflows
+   - id, workflowDefinitionId, name, description
+
+3. **TaskDefinition** - Tasks that belong to modules
+   - id, moduleDefinitionId, name, description
+
+4. **TaskDependencyDefinition** - Dependencies between tasks
+   - id, taskDefinitionId, dependsOnTaskDefinitionId
+
+### Instance Models
+
+From these definitions, instance models are created for actual workflow executions.
 
 ## Documentation
 
@@ -25,12 +34,14 @@ The system separates **definitions** (reusable templates) from **instances** (ac
 
 ## Mock Data Files
 
-### Definitions (Templates)
-- **task-definitions.json** - Reusable task templates
-- **module-definitions.json** - Module definitions with ownership and team assignment
+### Definition Models
+- **workflow-definitions.json** - Workflow definitions
+- **module-definitions.json** - Module definitions with workflow references
+- **task-definitions.json** - Task definitions with module references
+- **task-dependency-definitions.json** - Task dependency definitions
 
-### Instances (Executions)
-- **workflow-instances.json** - Actual workflow executions for clients (with embedded task instances and workflow definitions)
+### Instance Models
+- **workflow-instances.json** - Actual workflow executions for clients (with embedded task instances)
 
 ### Supporting Data
 - **users.json** - User records
@@ -39,10 +50,10 @@ The system separates **definitions** (reusable templates) from **instances** (ac
 
 ## Key Features
 
-- **Template-Based Workflows**: Define workflows once, use many times
-- **Task Reusability**: Reuse task definitions across multiple workflows
-- **Embedded Task Instances**: Task instances are embedded within workflow instances for better data locality
-- **Dependency Management**: Manage task dependencies at the task instance level
+- **Relational Model**: Normalized database design with separate entities
+- **Reusability**: Modules and tasks can be reused across workflows
+- **Flexible Dependencies**: Explicit task dependency model
+- **Versioning**: Workflows have version tracking
 - **Team Collaboration**: Assign tasks to team members and track progress
 - **Status Tracking**: Monitor workflow and task statuses in real-time
 - **Recommendation System**: POC for intelligent task and resource recommendations
@@ -50,8 +61,5 @@ The system separates **definitions** (reusable templates) from **instances** (ac
 ## Getting Started
 
 1. Review **[MODELS.md](.github/copilot/MODELS.md)** to understand the data structure
-2. Explore the mock data files to see examples of:
-   - How workflow definitions reference task definitions
-   - How workflow instances are created from definitions for specific clients
-   - How task instances are embedded within workflow instances
-   - How dependencies are defined within each task instance
+2. Explore the definition files to see how workflows, modules, and tasks are defined
+3. Review workflow-instances.json to see how workflows are executed for specific clients

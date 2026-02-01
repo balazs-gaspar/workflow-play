@@ -1,74 +1,62 @@
 [
   {
     "id": "task-def-001",
+    "moduleDefinitionId": "module-001",
     "name": "Create wireframes",
-    "description": "Design wireframes for user interfaces",
-    "estimatedHours": 8,
-    "requiredSkills": ["Figma", "UI/UX Design", "Wireframing"],
-    "module": "module-001"
+    "description": "Create wireframes task in Design module"
   },
   {
     "id": "task-def-002",
+    "moduleDefinitionId": "module-002",
     "name": "User research",
-    "description": "Conduct user research and gather requirements",
-    "estimatedHours": 6,
-    "requiredSkills": ["User Research", "Interview Techniques", "Analysis"],
-    "module": "module-002"
+    "description": "User research task in Research module"
   },
   {
     "id": "task-def-003",
+    "moduleDefinitionId": "module-003",
     "name": "Design validation",
-    "description": "Validate designs with stakeholders and users",
-    "estimatedHours": 4,
-    "requiredSkills": ["Presentation", "Communication", "User Testing"],
-    "module": "module-003"
-  },
-  {
-    "id": "task-def-004",
-    "name": "Frontend implementation",
-    "description": "Implement frontend components based on designs",
-    "estimatedHours": 16,
-    "requiredSkills": ["JavaScript", "React", "CSS", "HTML"],
-    "module": "module-004"
-  },
-  {
-    "id": "task-def-005",
-    "name": "Backend API development",
-    "description": "Develop REST API endpoints",
-    "estimatedHours": 20,
-    "requiredSkills": ["Java", "Spring Boot", "REST API", "PostgreSQL"],
-    "module": "module-004"
+    "description": "Design validation task in Validation module"
   },
   {
     "id": "task-def-006",
+    "moduleDefinitionId": "module-004",
     "name": "Database schema design",
-    "description": "Design and implement database schema",
-    "estimatedHours": 8,
-    "requiredSkills": ["SQL", "Database Design", "PostgreSQL"],
-    "module": "module-004"
+    "description": "Database schema design task in Development module"
+  },
+  {
+    "id": "task-def-004",
+    "moduleDefinitionId": "module-004",
+    "name": "Frontend implementation",
+    "description": "Frontend implementation task in Development module"
+  },
+  {
+    "id": "task-def-005",
+    "moduleDefinitionId": "module-004",
+    "name": "Backend API development",
+    "description": "Backend API development task in Development module"
   },
   {
     "id": "task-def-007",
+    "moduleDefinitionId": "module-005",
     "name": "Integration testing",
-    "description": "Perform integration testing between components",
-    "estimatedHours": 12,
-    "requiredSkills": ["Testing", "Selenium", "Jest", "Test Automation"],
-    "module": "module-005"
+    "description": "Integration testing task in Testing module"
   },
   {
-    "id": "task-def-008",
-    "name": "Requirements gathering",
-    "description": "Gather and document project requirements",
-    "estimatedHours": 4,
-    "requiredSkills": ["Communication", "Documentation", "Requirements Analysis"],
-    "module": "module-006"
+    "id": "task-def-004-003",
+    "moduleDefinitionId": "module-004-003",
+    "name": "Frontend implementation",
+    "description": "Frontend implementation task in Development module"
   },
   {
     "id": "task-def-009",
+    "moduleDefinitionId": "module-007",
     "name": "Production deployment",
-    "description": "Deploy application to production environment",
-    "estimatedHours": 8,
-    "requiredSkills": ["DevOps", "Docker", "CI/CD", "Cloud Platforms"],
-    "module": "module-007"
+    "description": "Production deployment task in Deployment module"
+  },
+  {
+    "id": "task-def-008",
+    "moduleDefinitionId": "module-006",
+    "name": "Requirements gathering",
+    "description": "Requirements gathering task in Planning module"
   }
 ]
