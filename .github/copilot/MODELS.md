@@ -291,7 +291,7 @@ new → in progress → completed
 ### Indexing
 
 For optimal query performance, consider indexing:
-- **workflow_instances**: `workflowDefinitionId`, `status`, `client.id`, `team.id`, `owner.id`, `taskInstances.status`, `taskInstances.owner.id`, `taskInstances.module.id`, `taskInstances.dependencies`
+- **workflow_instances**: `workflowDefinitionId` (references workflow id from wf-def-*.json files), `status`, `client.id`, `team.id`, `owner.id`, `taskInstances.status`, `taskInstances.owner.id`, `taskInstances.module.id`, `taskInstances.dependencies`
 - Composite indexes: `(status, updatedAt)`, `(team.id, status)`
 
 ### Data Integrity

@@ -49,6 +49,13 @@
       "name": "Development",
       "tasks": [
         {
+          "id": "task-def-006",
+          "name": "Database schema design",
+          "team": "Development Team A",
+          "duration": 1,
+          "dependencies": []
+        },
+        {
           "id": "task-def-004",
           "name": "Frontend implementation",
           "team": "Development Team A",
@@ -65,13 +72,6 @@
           "dependencies": [
             "task-def-006"
           ]
-        },
-        {
-          "id": "task-def-006",
-          "name": "Database schema design",
-          "team": "Development Team A",
-          "duration": 1,
-          "dependencies": []
         }
       ]
     },
