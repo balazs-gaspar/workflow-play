@@ -1,0 +1,50 @@
+[
+  {
+    "id": "module-001",
+    "workflowDefinitionId": "wf-def-001",
+    "name": "Design",
+    "description": "Design module for Dashboard Design Workflow"
+  },
+  {
+    "id": "module-002",
+    "workflowDefinitionId": "wf-def-001",
+    "name": "Research",
+    "description": "Research module for Dashboard Design Workflow"
+  },
+  {
+    "id": "module-003",
+    "workflowDefinitionId": "wf-def-001",
+    "name": "Validation",
+    "description": "Validation module for Dashboard Design Workflow"
+  },
+  {
+    "id": "module-004",
+    "workflowDefinitionId": "wf-def-001",
+    "name": "Development",
+    "description": "Development module for Dashboard Design Workflow"
+  },
+  {
+    "id": "module-005",
+    "workflowDefinitionId": "wf-def-001",
+    "name": "Testing",
+    "description": "Testing module for Dashboard Design Workflow"
+  },
+  {
+    "id": "module-004",
+    "workflowDefinitionId": "wf-def-003",
+    "name": "Development",
+    "description": "Development module for Quick Deployment Workflow"
+  },
+  {
+    "id": "module-007",
+    "workflowDefinitionId": "wf-def-003",
+    "name": "Deployment",
+    "description": "Deployment module for Quick Deployment Workflow"
+  },
+  {
+    "id": "module-006",
+    "workflowDefinitionId": "wf-def-004",
+    "name": "Planning",
+    "description": "Planning module for Planning Workflow"
+  }
+]

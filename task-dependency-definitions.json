@@ -1,0 +1,32 @@
+[
+  {
+    "id": "dep-001",
+    "taskDefinitionId": "task-def-003",
+    "dependsOnTaskDefinitionId": "task-def-001"
+  },
+  {
+    "id": "dep-002",
+    "taskDefinitionId": "task-def-004",
+    "dependsOnTaskDefinitionId": "task-def-001"
+  },
+  {
+    "id": "dep-003",
+    "taskDefinitionId": "task-def-005",
+    "dependsOnTaskDefinitionId": "task-def-006"
+  },
+  {
+    "id": "dep-004",
+    "taskDefinitionId": "task-def-007",
+    "dependsOnTaskDefinitionId": "task-def-004"
+  },
+  {
+    "id": "dep-005",
+    "taskDefinitionId": "task-def-007",
+    "dependsOnTaskDefinitionId": "task-def-005"
+  },
+  {
+    "id": "dep-006",
+    "taskDefinitionId": "task-def-009",
+    "dependsOnTaskDefinitionId": "task-def-004"
+  }
+]

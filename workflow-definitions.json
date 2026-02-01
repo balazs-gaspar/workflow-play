@@ -1,0 +1,23 @@
+[
+  {
+    "id": "wf-def-001",
+    "name": "Dashboard Design Workflow",
+    "description": "Complete workflow for designing and implementing a dashboard interface",
+    "version": "1.0.0",
+    "createdAt": "2026-01-01T10:00:00Z"
+  },
+  {
+    "id": "wf-def-003",
+    "name": "Quick Deployment Workflow",
+    "description": "Streamlined workflow for frontend implementation and deployment",
+    "version": "1.0.0",
+    "createdAt": "2025-12-01T10:00:00Z"
+  },
+  {
+    "id": "wf-def-004",
+    "name": "Planning Workflow",
+    "description": "Initial planning and requirements gathering workflow",
+    "version": "1.0.0",
+    "createdAt": "2026-01-30T09:00:00Z"
+  }
+]

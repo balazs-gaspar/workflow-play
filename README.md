@@ -1,27 +1,32 @@
 # Workflow Management & Recommendation System POC
 
-This project demonstrates a simplified workflow management application data set and serves as a Proof of Concept (POC) for a recommendation system.
+This project demonstrates a workflow management application data set using a relational model approach and serves as a Proof of Concept (POC) for a recommendation system.
 
 ## Overview
 
-The system uses a simplified single-model approach where each workflow is defined in its own file with all its modules and tasks nested within it.
+The system uses a relational database approach with separate definition models for workflows, modules, tasks, and task dependencies. This allows for flexible reuse and composition of workflow components.
 
 ## Architecture
 
-### Workflow Model
-Each workflow definition contains:
-- **id**: Unique identifier
-- **name**: Workflow name
-- **description**: Workflow description
-- **modules**: Array of modules, each containing:
-  - **id**: Module identifier
-  - **name**: Module name
-  - **tasks**: Array of tasks, each containing:
-    - **id**: Task identifier
-    - **name**: Task name
-    - **team**: Team responsible for the task
-    - **duration**: Estimated duration in days
-    - **dependencies**: Array of task IDs that must be completed first
+### Definition Models
+
+The system separates workflow definitions into four related entities:
+
+1. **WorkflowDefinition** - High-level workflow metadata
+   - id, name, description, version, createdAt
+
+2. **ModuleDefinition** - Modules that belong to workflows
+   - id, workflowDefinitionId, name, description
+
+3. **TaskDefinition** - Tasks that belong to modules
+   - id, moduleDefinitionId, name, description
+
+4. **TaskDependencyDefinition** - Dependencies between tasks
+   - id, taskDefinitionId, dependsOnTaskDefinitionId
+
+### Instance Models
+
+From these definitions, instance models are created for actual workflow executions.
 
 ## Documentation
 
@@ -29,12 +34,13 @@ Each workflow definition contains:
 
 ## Mock Data Files
 
-### Workflow Definitions (file by file)
-- **wf-def-001.json** - Dashboard Design Workflow
-- **wf-def-003.json** - Quick Deployment Workflow
-- **wf-def-004.json** - Planning Workflow
+### Definition Models
+- **workflow-definitions.json** - Workflow definitions
+- **module-definitions.json** - Module definitions with workflow references
+- **task-definitions.json** - Task definitions with module references
+- **task-dependency-definitions.json** - Task dependency definitions
 
-### Instances (Executions)
+### Instance Models
 - **workflow-instances.json** - Actual workflow executions for clients (with embedded task instances)
 
 ### Supporting Data
@@ -44,10 +50,10 @@ Each workflow definition contains:
 
 ## Key Features
 
-- **Simplified Model**: Single workflow model with nested modules and tasks
-- **File-by-File Definitions**: Each workflow type is defined in its own JSON file
-- **Embedded Structure**: Tasks are nested within modules within workflows
-- **Dependency Management**: Manage task dependencies at the task level
+- **Relational Model**: Normalized database design with separate entities
+- **Reusability**: Modules and tasks can be reused across workflows
+- **Flexible Dependencies**: Explicit task dependency model
+- **Versioning**: Workflows have version tracking
 - **Team Collaboration**: Assign tasks to team members and track progress
 - **Status Tracking**: Monitor workflow and task statuses in real-time
 - **Recommendation System**: POC for intelligent task and resource recommendations
@@ -55,5 +61,5 @@ Each workflow definition contains:
 ## Getting Started
 
 1. Review **[MODELS.md](.github/copilot/MODELS.md)** to understand the data structure
-2. Explore the workflow definition files (wf-def-*.json) to see the simplified structure
+2. Explore the definition files to see how workflows, modules, and tasks are defined
 3. Review workflow-instances.json to see how workflows are executed for specific clients

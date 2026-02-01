@@ -1,0 +1,62 @@
+[
+  {
+    "id": "task-def-001",
+    "moduleDefinitionId": "module-001",
+    "name": "Create wireframes",
+    "description": "Create wireframes task in Design module"
+  },
+  {
+    "id": "task-def-002",
+    "moduleDefinitionId": "module-002",
+    "name": "User research",
+    "description": "User research task in Research module"
+  },
+  {
+    "id": "task-def-003",
+    "moduleDefinitionId": "module-003",
+    "name": "Design validation",
+    "description": "Design validation task in Validation module"
+  },
+  {
+    "id": "task-def-006",
+    "moduleDefinitionId": "module-004",
+    "name": "Database schema design",
+    "description": "Database schema design task in Development module"
+  },
+  {
+    "id": "task-def-004",
+    "moduleDefinitionId": "module-004",
+    "name": "Frontend implementation",
+    "description": "Frontend implementation task in Development module"
+  },
+  {
+    "id": "task-def-005",
+    "moduleDefinitionId": "module-004",
+    "name": "Backend API development",
+    "description": "Backend API development task in Development module"
+  },
+  {
+    "id": "task-def-007",
+    "moduleDefinitionId": "module-005",
+    "name": "Integration testing",
+    "description": "Integration testing task in Testing module"
+  },
+  {
+    "id": "task-def-004",
+    "moduleDefinitionId": "module-004",
+    "name": "Frontend implementation",
+    "description": "Frontend implementation task in Development module"
+  },
+  {
+    "id": "task-def-009",
+    "moduleDefinitionId": "module-007",
+    "name": "Production deployment",
+    "description": "Production deployment task in Deployment module"
+  },
+  {
+    "id": "task-def-008",
+    "moduleDefinitionId": "module-006",
+    "name": "Requirements gathering",
+    "description": "Requirements gathering task in Planning module"
+  }
+]

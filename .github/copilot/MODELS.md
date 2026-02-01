@@ -2,11 +2,11 @@
 
 This document defines the core data models for the workflow management system.
 
-The system uses a simplified single-model approach where workflows are defined with nested modules and tasks.
+The system uses a relational database approach with separate definition models for workflows, modules, tasks, and task dependencies.
 
-## Workflow Model
+## WorkflowDefinition Model
 
-A workflow represents a complete work process with nested modules and tasks.
+A workflow definition represents high-level metadata about a workflow.
 
 ### Attributes
 
@@ -15,25 +15,8 @@ A workflow represents a complete work process with nested modules and tasks.
 | `id` | UUID/String | Unique identifier for the workflow |
 | `name` | String | Name of the workflow (e.g., "Dashboard Design Workflow") |
 | `description` | String | Description of the workflow's purpose |
-| `modules` | Array | Array of module objects (see Module structure below) |
-
-### Module Structure (nested within Workflow)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| `id` | UUID/String | Unique identifier for the module |
-| `name` | String | Name of the module (e.g., "Design", "Development", "Testing") |
-| `tasks` | Array | Array of task objects (see Task structure below) |
-
-### Task Structure (nested within Module)
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| `id` | UUID/String | Unique identifier for the task |
-| `name` | String | Descriptive name of the task |
-| `team` | String | Name of the team responsible for this task |
-| `duration` | Number | Estimated duration in days |
-| `dependencies` | Array | Array of task IDs that must be completed before this task can start |
+| `version` | String | Version number (e.g., "1.0.0") |
+| `createdAt` | DateTime | Timestamp when the workflow was created |
 
 ### Example Structure
 
@@ -42,34 +25,78 @@ A workflow represents a complete work process with nested modules and tasks.
   "id": "wf-def-001",
   "name": "Dashboard Design Workflow",
   "description": "Complete workflow for designing and implementing a dashboard interface",
-  "modules": [
-    {
-      "id": "module-001",
-      "name": "Design",
-      "tasks": [
-        {
-          "id": "task-def-001",
-          "name": "Create wireframes",
-          "team": "Development Team A",
-          "duration": 1,
-          "dependencies": []
-        }
-      ]
-    },
-    {
-      "id": "module-004",
-      "name": "Development",
-      "tasks": [
-        {
-          "id": "task-def-004",
-          "name": "Frontend implementation",
-          "team": "Development Team A",
-          "duration": 2,
-          "dependencies": ["task-def-001"]
-        }
-      ]
-    }
-  ]
+  "version": "1.0.0",
+  "createdAt": "2026-01-01T10:00:00Z"
+}
+```
+
+## ModuleDefinition Model
+
+A module definition represents a functional area or category of work within a workflow.
+
+### Attributes
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| `id` | UUID/String | Unique identifier for the module |
+| `workflowDefinitionId` | Reference | Reference to the workflow definition this module belongs to |
+| `name` | String | Name of the module (e.g., "Design", "Development", "Testing") |
+| `description` | String | Description of the module's purpose and scope |
+
+### Example Structure
+
+```json
+{
+  "id": "module-001",
+  "workflowDefinitionId": "wf-def-001",
+  "name": "Design",
+  "description": "Design module for Dashboard Design Workflow"
+}
+```
+
+## TaskDefinition Model
+
+A task definition represents a specific piece of work within a module.
+
+### Attributes
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| `id` | UUID/String | Unique identifier for the task |
+| `moduleDefinitionId` | Reference | Reference to the module definition this task belongs to |
+| `name` | String | Descriptive name of the task |
+| `description` | String | Detailed description of the task |
+
+### Example Structure
+
+```json
+{
+  "id": "task-def-001",
+  "moduleDefinitionId": "module-001",
+  "name": "Create wireframes",
+  "description": "Create wireframes task in Design module"
+}
+```
+
+## TaskDependencyDefinition Model
+
+A task dependency definition represents a dependency relationship between two tasks.
+
+### Attributes
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| `id` | UUID/String | Unique identifier for the dependency |
+| `taskDefinitionId` | Reference | Reference to the task that has the dependency |
+| `dependsOnTaskDefinitionId` | Reference | Reference to the task that must be completed first |
+
+### Example Structure
+
+```json
+{
+  "id": "dep-001",
+  "taskDefinitionId": "task-def-003",
+  "dependsOnTaskDefinitionId": "task-def-001"
 }
 ```
 
@@ -259,18 +286,19 @@ new → in progress → completed
 
 ## Relationships
 
-### Workflow Model Structure
-- A **Workflow** contains multiple **Modules**
-- A **Module** contains multiple **Tasks**
-- A **Task** can depend on other **Tasks** (within the same or different modules)
+### Definition Level
+- A **WorkflowDefinition** has multiple **ModuleDefinitions** (via workflowDefinitionId)
+- A **ModuleDefinition** has multiple **TaskDefinitions** (via moduleDefinitionId)
+- A **TaskDefinition** can have multiple **TaskDependencyDefinitions** (via taskDefinitionId)
+- **TaskDependencyDefinition** links tasks through dependsOnTaskDefinitionId
 
 ### Instance Level
-- A **Workflow Instance** is created from a **Workflow** (defined in wf-def-*.json files)
+- A **Workflow Instance** is created from a **WorkflowDefinition**
 - A **Workflow Instance** belongs to one **Client**
 - A **Workflow Instance** is managed by one **Team**
 - A **Workflow Instance** has one **Owner** (User)
 - A **Workflow Instance** contains multiple **Task Instances** (embedded)
-- A **Task Instance** references a **Task** from the Workflow model (via taskDefinitionId)
+- A **Task Instance** references a **TaskDefinition** (via taskDefinitionId)
 - A **Task Instance** is embedded within one **Workflow Instance**
 - A **Task Instance** contains **Module** information (id and name)
 - A **Task Instance** is assigned to one **User** (owner)
@@ -282,22 +310,30 @@ new → in progress → completed
 
 ### Tables/Collections
 
-1. **workflows** - Workflow definitions (stored as individual JSON files: wf-def-*.json)
-2. **workflow_instances** - Actual workflow executions (with embedded task instances)
-3. **users** - User records
-4. **teams** - Team records
-5. **clients** - Client records
+1. **workflow_definitions** - Workflow definitions with version tracking
+2. **module_definitions** - Module definitions linked to workflows
+3. **task_definitions** - Task definitions linked to modules
+4. **task_dependency_definitions** - Explicit task dependencies
+5. **workflow_instances** - Actual workflow executions (with embedded task instances)
+6. **users** - User records
+7. **teams** - Team records
+8. **clients** - Client records
 
 ### Indexing
 
 For optimal query performance, consider indexing:
-- **workflow_instances**: `workflowDefinitionId` (references workflow id from wf-def-*.json files), `status`, `client.id`, `team.id`, `owner.id`, `taskInstances.status`, `taskInstances.owner.id`, `taskInstances.module.id`, `taskInstances.dependencies`
+- **workflow_definitions**: `id`, `version`, `createdAt`
+- **module_definitions**: `workflowDefinitionId`, `id`
+- **task_definitions**: `moduleDefinitionId`, `id`
+- **task_dependency_definitions**: `taskDefinitionId`, `dependsOnTaskDefinitionId`
+- **workflow_instances**: `workflowDefinitionId`, `status`, `client.id`, `team.id`, `owner.id`, `taskInstances.status`, `taskInstances.owner.id`, `taskInstances.module.id`, `taskInstances.dependencies`
 - Composite indexes: `(status, updatedAt)`, `(team.id, status)`
 
 ### Data Integrity
 
 - Ensure referential integrity for all references
 - Validate status transitions
-- Prevent circular dependencies in task instance dependency chains
+- Prevent circular dependencies in task dependency chains
 - Cascade updates when users/teams are modified
-- Ensure task instances reference valid task IDs from workflow definitions
+- Ensure task instances reference valid task definitions
+- Validate workflowDefinitionId, moduleDefinitionId references exist
