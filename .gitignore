@@ -1,0 +1,12 @@
+# Frontend build artifacts are handled by frontend/.gitignore
+# This file is for root-level ignores only
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

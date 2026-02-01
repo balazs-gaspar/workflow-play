@@ -6,6 +6,14 @@ This project demonstrates a workflow management application data set using a rel
 
 The system uses a relational database approach with separate definition models for workflows, modules, tasks, and task dependencies. This allows for flexible reuse and composition of workflow components.
 
+## Technology Stack
+
+- **Frontend**: [Astro](https://astro.build) with React components
+- **Backend**: [Supabase](https://supabase.com) (PostgreSQL database with REST API)
+- **Deployment**: GitHub Pages with GitHub Actions
+- **Styling**: CSS (scoped styles in components)
+- **Language**: TypeScript
+
 ## Architecture
 
 ### Definition Models
@@ -31,6 +39,9 @@ From these definitions, instance models are created for actual workflow executio
 ## Documentation
 
 - **[MODELS.md](.github/copilot/MODELS.md)** - Complete data models for all entities
+- **[SETUP_GUIDE.md](SETUP_GUIDE.md)** - Step-by-step setup instructions
+- **[frontend/README.md](frontend/README.md)** - Frontend documentation
+- **[supabase/README.md](supabase/README.md)** - Database setup instructions
 
 ## Mock Data Files
 
