@@ -27,6 +27,6 @@
   {
     "id": "dep-006",
     "taskDefinitionId": "task-def-009",
-    "dependsOnTaskDefinitionId": "task-def-004"
+    "dependsOnTaskDefinitionId": "task-def-004-003"
   }
 ]

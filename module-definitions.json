@@ -30,7 +30,7 @@
     "description": "Testing module for Dashboard Design Workflow"
   },
   {
-    "id": "module-004",
+    "id": "module-004-003",
     "workflowDefinitionId": "wf-def-003",
     "name": "Development",
     "description": "Development module for Quick Deployment Workflow"

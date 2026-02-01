@@ -42,8 +42,8 @@
     "description": "Integration testing task in Testing module"
   },
   {
-    "id": "task-def-004",
-    "moduleDefinitionId": "module-004",
+    "id": "task-def-004-003",
+    "moduleDefinitionId": "module-004-003",
     "name": "Frontend implementation",
     "description": "Frontend implementation task in Development module"
   },
