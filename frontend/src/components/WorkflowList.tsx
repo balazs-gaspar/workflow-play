@@ -6,12 +6,12 @@ interface WorkflowDefinition {
   name: string;
   description: string;
   version: string;
-  createdAt: string;
+  created_at: string;
 }
 
 interface ModuleDefinition {
   id: string;
-  workflowDefinitionId: string;
+  workflow_definition_id: string;
   name: string;
   description: string;
 }
@@ -39,7 +39,7 @@ export default function WorkflowList() {
       const { data, error } = await supabase
         .from('workflow_definitions')
         .select('*')
-        .order('createdAt', { ascending: false });
+        .order('created_at', { ascending: false });
 
       if (error) throw error;
       setWorkflows(data || []);
@@ -55,7 +55,7 @@ export default function WorkflowList() {
       const { data, error } = await supabase
         .from('module_definitions')
         .select('*')
-        .eq('workflowDefinitionId', workflowId);
+        .eq('workflow_definition_id', workflowId);
 
       if (error) throw error;
       setModules(data || []);
@@ -100,7 +100,7 @@ export default function WorkflowList() {
               <div className="meta">
                 <span className="version">v{workflow.version}</span>
                 <span className="date">
-                  {new Date(workflow.createdAt).toLocaleDateString()}
+                  {new Date(workflow.created_at).toLocaleDateString()}
                 </span>
               </div>
               
