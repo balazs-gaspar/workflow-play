@@ -35,6 +35,7 @@ A task instance represents an actual execution of a task definition within a wor
 | `owner` | Reference | Reference to the user assigned to complete the task |
 | `team` | Reference | Reference to the team responsible for the task |
 | `priority` | Enum | Task priority: `low`, `medium`, `high`, `critical` |
+| `dependencies` | Array | List of task instance IDs that must be completed before this task can start |
 | `actualHours` | Number | Actual time spent on the task |
 | `createdAt` | DateTime | Timestamp when the task instance was created |
 | `updatedAt` | DateTime | Timestamp when the task instance was last updated |
@@ -65,6 +66,7 @@ pending → new → in progress → completed
     "name": "Development Team A"
   },
   "priority": "high",
+  "dependencies": [],
   "actualHours": 5,
   "createdAt": "2026-01-15T09:00:00Z",
   "updatedAt": "2026-01-31T14:20:00Z",
@@ -123,7 +125,6 @@ A workflow instance represents an actual execution of a workflow definition for 
 | `team` | Reference | Reference to the team responsible for the workflow |
 | `owner` | Reference | Reference to the user who owns/manages the workflow |
 | `taskInstances` | Array | Array of task instance objects that belong to this workflow |
-| `dependencies` | Object | Dependency mapping between task instances in this workflow |
 | `createdAt` | DateTime | Timestamp when the workflow instance was created |
 | `updatedAt` | DateTime | Timestamp when the workflow instance was last updated |
 | `startedAt` | DateTime | Timestamp when the workflow started (optional) |
@@ -170,6 +171,7 @@ new → in progress → completed
         "name": "Development Team A"
       },
       "priority": "high",
+      "dependencies": [],
       "actualHours": 7,
       "createdAt": "2026-01-15T09:00:00Z",
       "updatedAt": "2026-01-17T16:00:00Z",
@@ -189,6 +191,7 @@ new → in progress → completed
         "name": "Development Team A"
       },
       "priority": "high",
+      "dependencies": ["task-inst-001"],
       "actualHours": 3,
       "createdAt": "2026-01-16T09:00:00Z",
       "updatedAt": "2026-01-31T15:30:00Z",
@@ -196,9 +199,6 @@ new → in progress → completed
       "completedAt": null
     }
   ],
-  "dependencies": {
-    "task-inst-002": ["task-inst-001"]
-  },
   "createdAt": "2026-01-15T10:00:00Z",
   "updatedAt": "2026-01-31T15:30:00Z",
   "startedAt": "2026-01-15T10:00:00Z",
@@ -246,11 +246,11 @@ new → in progress → completed
 - A **Workflow Instance** is managed by one **Team**
 - A **Workflow Instance** has one **Owner** (User)
 - A **Workflow Instance** contains multiple **Task Instances** (embedded)
-- A **Workflow Instance** defines **Dependencies** between Task Instances
 - A **Task Instance** is created from a **Task Definition**
 - A **Task Instance** is embedded within one **Workflow Instance**
 - A **Task Instance** is assigned to one **User** (owner)
 - A **Task Instance** belongs to one **Team**
+- A **Task Instance** can have multiple **Dependencies** (other Task Instances)
 - A **Team** contains multiple **Users** (members)
 
 ## Database Considerations
@@ -268,7 +268,7 @@ new → in progress → completed
 
 For optimal query performance, consider indexing:
 - **workflow_definitions**: `name`
-- **workflow_instances**: `workflowDefinitionId`, `status`, `client.id`, `team.id`, `owner.id`, `taskInstances.status`, `taskInstances.owner.id`
+- **workflow_instances**: `workflowDefinitionId`, `status`, `client.id`, `team.id`, `owner.id`, `taskInstances.status`, `taskInstances.owner.id`, `taskInstances.dependencies`
 - **task_definitions**: `category`, `requiredSkills`
 - Composite indexes: `(status, updatedAt)`, `(team.id, status)`
 
@@ -276,7 +276,7 @@ For optimal query performance, consider indexing:
 
 - Ensure referential integrity for all references
 - Validate status transitions
-- Prevent circular dependencies in workflow instance dependency mappings
+- Prevent circular dependencies in task instance dependency chains
 - Cascade updates when users/teams are modified
 - Ensure task instances reference valid task definitions
 - Ensure workflow instances reference valid workflow definitions

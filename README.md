@@ -42,7 +42,7 @@ The system separates **definitions** (reusable templates) from **instances** (ac
 - **Template-Based Workflows**: Define workflows once, use many times
 - **Task Reusability**: Reuse task definitions across multiple workflows
 - **Embedded Task Instances**: Task instances are embedded within workflow instances for better data locality
-- **Dependency Management**: Manage task dependencies at the workflow instance level
+- **Dependency Management**: Manage task dependencies at the task instance level
 - **Team Collaboration**: Assign tasks to team members and track progress
 - **Status Tracking**: Monitor workflow and task statuses in real-time
 - **Recommendation System**: POC for intelligent task and resource recommendations
@@ -54,4 +54,4 @@ The system separates **definitions** (reusable templates) from **instances** (ac
    - How workflow definitions reference task definitions
    - How workflow instances are created from definitions for specific clients
    - How task instances are embedded within workflow instances
-   - How dependencies are managed at the workflow instance level
+   - How dependencies are defined within each task instance

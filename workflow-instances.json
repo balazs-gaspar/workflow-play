@@ -33,7 +33,8 @@
         "createdAt": "2026-01-15T09:00:00Z",
         "updatedAt": "2026-01-17T16:00:00Z",
         "startedAt": "2026-01-15T10:00:00Z",
-        "completedAt": "2026-01-17T16:00:00Z"
+        "completedAt": "2026-01-17T16:00:00Z",
+        "dependencies": []
       },
       {
         "id": "task-inst-002",
@@ -52,7 +53,8 @@
         "createdAt": "2026-01-15T09:00:00Z",
         "updatedAt": "2026-01-18T14:30:00Z",
         "startedAt": "2026-01-15T10:00:00Z",
-        "completedAt": "2026-01-18T14:30:00Z"
+        "completedAt": "2026-01-18T14:30:00Z",
+        "dependencies": []
       },
       {
         "id": "task-inst-003",
@@ -71,7 +73,10 @@
         "createdAt": "2026-01-17T10:00:00Z",
         "updatedAt": "2026-01-19T15:00:00Z",
         "startedAt": "2026-01-17T16:30:00Z",
-        "completedAt": "2026-01-19T15:00:00Z"
+        "completedAt": "2026-01-19T15:00:00Z",
+        "dependencies": [
+          "task-inst-001"
+        ]
       },
       {
         "id": "task-inst-004",
@@ -90,7 +95,10 @@
         "createdAt": "2026-01-18T10:00:00Z",
         "updatedAt": "2026-01-31T15:30:00Z",
         "startedAt": "2026-01-18T11:00:00Z",
-        "completedAt": null
+        "completedAt": null,
+        "dependencies": [
+          "task-inst-001"
+        ]
       },
       {
         "id": "task-inst-005",
@@ -109,7 +117,10 @@
         "createdAt": "2026-01-18T10:00:00Z",
         "updatedAt": "2026-01-31T14:00:00Z",
         "startedAt": "2026-01-19T18:00:00Z",
-        "completedAt": null
+        "completedAt": null,
+        "dependencies": [
+          "task-inst-006"
+        ]
       },
       {
         "id": "task-inst-006",
@@ -128,7 +139,8 @@
         "createdAt": "2026-01-16T09:00:00Z",
         "updatedAt": "2026-01-19T17:00:00Z",
         "startedAt": "2026-01-16T10:00:00Z",
-        "completedAt": "2026-01-19T17:00:00Z"
+        "completedAt": "2026-01-19T17:00:00Z",
+        "dependencies": []
       },
       {
         "id": "task-inst-007",
@@ -147,28 +159,17 @@
         "createdAt": "2026-01-20T10:00:00Z",
         "updatedAt": "2026-01-20T10:00:00Z",
         "startedAt": null,
-        "completedAt": null
+        "completedAt": null,
+        "dependencies": [
+          "task-inst-004",
+          "task-inst-005"
+        ]
       }
     ],
     "createdAt": "2026-01-15T10:00:00Z",
     "updatedAt": "2026-01-31T15:30:00Z",
     "startedAt": "2026-01-15T10:00:00Z",
-    "completedAt": null,
-    "dependencies": {
-      "task-inst-003": [
-        "task-inst-001"
-      ],
-      "task-inst-004": [
-        "task-inst-001"
-      ],
-      "task-inst-005": [
-        "task-inst-006"
-      ],
-      "task-inst-007": [
-        "task-inst-004",
-        "task-inst-005"
-      ]
-    }
+    "completedAt": null
   },
   {
     "id": "wf-inst-002",
@@ -204,14 +205,14 @@
         "createdAt": "2026-01-30T09:00:00Z",
         "updatedAt": "2026-01-30T09:00:00Z",
         "startedAt": null,
-        "completedAt": null
+        "completedAt": null,
+        "dependencies": []
       }
     ],
     "createdAt": "2026-01-30T09:00:00Z",
     "updatedAt": "2026-01-30T09:00:00Z",
     "startedAt": null,
-    "completedAt": null,
-    "dependencies": {}
+    "completedAt": null
   },
   {
     "id": "wf-inst-003",
@@ -247,7 +248,8 @@
         "createdAt": "2025-12-02T09:00:00Z",
         "updatedAt": "2026-01-10T18:00:00Z",
         "startedAt": "2025-12-02T10:00:00Z",
-        "completedAt": "2026-01-10T18:00:00Z"
+        "completedAt": "2026-01-10T18:00:00Z",
+        "dependencies": []
       },
       {
         "id": "task-inst-010",
@@ -266,17 +268,15 @@
         "createdAt": "2026-01-11T09:00:00Z",
         "updatedAt": "2026-01-20T16:00:00Z",
         "startedAt": "2026-01-11T10:00:00Z",
-        "completedAt": "2026-01-20T16:00:00Z"
+        "completedAt": "2026-01-20T16:00:00Z",
+        "dependencies": [
+          "task-inst-009"
+        ]
       }
     ],
     "createdAt": "2025-12-01T10:00:00Z",
     "updatedAt": "2026-01-20T16:00:00Z",
     "startedAt": "2025-12-01T10:00:00Z",
-    "completedAt": "2026-01-20T16:00:00Z",
-    "dependencies": {
-      "task-inst-010": [
-        "task-inst-009"
-      ]
-    }
+    "completedAt": "2026-01-20T16:00:00Z"
   }
 ]
