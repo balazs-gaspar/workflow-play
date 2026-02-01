@@ -1,0 +1,121 @@
+[
+  {
+    "id": "wf-def-001",
+    "name": "Dashboard Design Workflow",
+    "description": "Complete workflow for designing a dashboard interface with validation and implementation",
+    "tasks": [
+      {
+        "id": "wf-task-001",
+        "taskDefinitionId": "task-def-001",
+        "moduleId": "module-001",
+        "dependencies": []
+      },
+      {
+        "id": "wf-task-002",
+        "taskDefinitionId": "task-def-002",
+        "moduleId": "module-002",
+        "dependencies": []
+      },
+      {
+        "id": "wf-task-003",
+        "taskDefinitionId": "task-def-003",
+        "moduleId": "module-003",
+        "dependencies": ["wf-task-001"]
+      },
+      {
+        "id": "wf-task-004",
+        "taskDefinitionId": "task-def-004",
+        "moduleId": "module-004",
+        "dependencies": ["wf-task-001"]
+      },
+      {
+        "id": "wf-task-005",
+        "taskDefinitionId": "task-def-005",
+        "moduleId": "module-004",
+        "dependencies": ["wf-task-006"]
+      },
+      {
+        "id": "wf-task-006",
+        "taskDefinitionId": "task-def-006",
+        "moduleId": "module-004",
+        "dependencies": []
+      },
+      {
+        "id": "wf-task-007",
+        "taskDefinitionId": "task-def-007",
+        "moduleId": "module-005",
+        "dependencies": ["wf-task-004", "wf-task-005"]
+      }
+    ],
+    "modules": [
+      {
+        "id": "wf-mod-001",
+        "moduleDefinitionId": "module-001"
+      },
+      {
+        "id": "wf-mod-002",
+        "moduleDefinitionId": "module-002"
+      },
+      {
+        "id": "wf-mod-003",
+        "moduleDefinitionId": "module-003"
+      },
+      {
+        "id": "wf-mod-004",
+        "moduleDefinitionId": "module-004"
+      },
+      {
+        "id": "wf-mod-005",
+        "moduleDefinitionId": "module-005"
+      }
+    ]
+  },
+  {
+    "id": "wf-def-003",
+    "name": "Quick Deployment Workflow",
+    "description": "Streamlined workflow for rapid development and deployment",
+    "tasks": [
+      {
+        "id": "wf-task-008",
+        "taskDefinitionId": "task-def-004",
+        "moduleId": "module-004",
+        "dependencies": []
+      },
+      {
+        "id": "wf-task-009",
+        "taskDefinitionId": "task-def-009",
+        "moduleId": "module-007",
+        "dependencies": ["wf-task-008"]
+      }
+    ],
+    "modules": [
+      {
+        "id": "wf-mod-006",
+        "moduleDefinitionId": "module-004"
+      },
+      {
+        "id": "wf-mod-007",
+        "moduleDefinitionId": "module-007"
+      }
+    ]
+  },
+  {
+    "id": "wf-def-004",
+    "name": "Requirements Planning Workflow",
+    "description": "Initial planning and requirements gathering workflow",
+    "tasks": [
+      {
+        "id": "wf-task-010",
+        "taskDefinitionId": "task-def-008",
+        "moduleId": "module-006",
+        "dependencies": []
+      }
+    ],
+    "modules": [
+      {
+        "id": "wf-mod-008",
+        "moduleDefinitionId": "module-006"
+      }
+    ]
+  }
+]
