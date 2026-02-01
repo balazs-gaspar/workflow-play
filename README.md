@@ -6,6 +6,15 @@ This project demonstrates a workflow management application data set using a rel
 
 The system uses a relational database approach with separate definition models for workflows, modules, tasks, and task dependencies. This allows for flexible reuse and composition of workflow components.
 
+## Technology Stack
+
+- **Frontend**: [Vite](https://vitejs.dev) + [React](https://react.dev) + TypeScript
+- **Backend**: [Supabase](https://supabase.com) (PostgreSQL database with REST API)
+- **Routing**: [React Router](https://reactrouter.com)
+- **Deployment**: GitHub Pages with GitHub Actions
+- **Styling**: CSS Modules
+- **Language**: TypeScript
+
 ## Architecture
 
 ### Definition Models
@@ -31,6 +40,9 @@ From these definitions, instance models are created for actual workflow executio
 ## Documentation
 
 - **[MODELS.md](.github/copilot/MODELS.md)** - Complete data models for all entities
+- **[SETUP_GUIDE.md](SETUP_GUIDE.md)** - Step-by-step setup instructions
+- **[frontend/README.md](frontend/README.md)** - Frontend documentation
+- **[supabase/README.md](supabase/README.md)** - Database setup instructions
 
 ## Mock Data Files
 
@@ -57,8 +69,62 @@ From these definitions, instance models are created for actual workflow executio
 - **Team Collaboration**: Assign tasks to team members and track progress
 - **Status Tracking**: Monitor workflow and task statuses in real-time
 - **Recommendation System**: POC for intelligent task and resource recommendations
+- **Web Application**: Vite + React + TypeScript frontend with Supabase backend
+- **GitHub Pages Deployment**: Automatic deployment via GitHub Actions
+- **No Authentication Required**: Public read-only access to workflow data
+
+## Live Application
+
+The application is deployed to GitHub Pages and can be accessed at:
+**https://balazs-gaspar.github.io/workflow-play/**
+
+The frontend is built with Vite, React, and TypeScript, using Supabase as the backend database.
+
+## Project Structure
+
+```
+workflow-play/
+├── frontend/              # Vite + React + TypeScript frontend
+│   ├── src/
+│   │   ├── components/   # React components
+│   │   ├── pages/        # Page components
+│   │   ├── lib/          # Supabase client and utilities
+│   │   └── pages/        # Page routes
+│   └── README.md         # Frontend documentation
+├── supabase/             # Database schema and seed data
+│   ├── schema.sql        # Database table definitions
+│   ├── seed.sql          # Sample data
+│   └── README.md         # Database setup instructions
+├── *.json                # Original mock data files
+└── .github/
+    └── workflows/
+        └── deploy.yml    # GitHub Pages deployment workflow
+```
 
 ## Getting Started
+
+### Option 1: View the Live Application
+
+Visit the deployed application at https://balazs-gaspar.github.io/workflow-play/
+
+### Option 2: Run Locally
+
+1. **Review the Data Models**
+   - See **[MODELS.md](.github/copilot/MODELS.md)** for complete data structure documentation
+
+2. **Set Up Supabase Database**
+   - Follow instructions in **[supabase/README.md](supabase/README.md)**
+   - Create a Supabase project
+   - Run the schema.sql to create tables
+   - Run the seed.sql to populate with sample data
+
+3. **Run the Frontend**
+   - Follow instructions in **[frontend/README.md](frontend/README.md)**
+   - Install dependencies: `cd frontend && npm install`
+   - Configure environment variables (copy `.env.example` to `.env`)
+   - Start dev server: `npm run dev`
+
+### Option 3: Explore the Data Files
 
 1. Review **[MODELS.md](.github/copilot/MODELS.md)** to understand the data structure
 2. Explore the definition files to see how workflows, modules, and tasks are defined
