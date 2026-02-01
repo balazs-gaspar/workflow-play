@@ -78,7 +78,7 @@ If you need to add write capabilities later, you'll need to:
 - **task_dependency_definitions**: Dependencies between tasks
 
 ### Instance Tables
-- **workflow_instances**: Actual workflow executions (with embedded task instances)
+- **workflow_instances**: Actual workflow executions
 - **module_instances**: Instances of modules within workflow executions
 - **task_instances**: Individual task executions with status, owner, and team tracking
 

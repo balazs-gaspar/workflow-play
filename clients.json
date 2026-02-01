@@ -2,19 +2,16 @@
   {
     "id": "client-001",
     "name": "Acme Corporation",
-    "contactEmail": "contact@acme.com",
     "organization": "Acme Corp."
   },
   {
     "id": "client-002",
     "name": "TechStart Inc",
-    "contactEmail": "hello@techstart.io",
     "organization": "TechStart Innovations"
   },
   {
     "id": "client-003",
     "name": "Global Solutions Ltd",
-    "contactEmail": "info@globalsolutions.com",
     "organization": "Global Solutions Limited"
   }
 ]

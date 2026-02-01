@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS teams (
 CREATE TABLE IF NOT EXISTS clients (
   id TEXT PRIMARY KEY,
   name TEXT NOT NULL,
-  contact_email TEXT NOT NULL,
+  contact_email TEXT,
   organization TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS task_dependency_definitions (
   CONSTRAINT no_self_dependency CHECK (task_definition_id != depends_on_task_definition_id)
 );
 
--- Create workflow_instances table with JSONB for embedded task instances
+-- Create workflow_instances table
 CREATE TABLE IF NOT EXISTS workflow_instances (
   id TEXT PRIMARY KEY,
   workflow_definition_id TEXT NOT NULL REFERENCES workflow_definitions(id),
@@ -71,7 +71,6 @@ CREATE TABLE IF NOT EXISTS workflow_instances (
   client JSONB NOT NULL,
   team JSONB NOT NULL,
   owner JSONB NOT NULL,
-  task_instances JSONB NOT NULL DEFAULT '[]',
   created_at TIMESTAMP WITH TIME ZONE NOT NULL,
   updated_at TIMESTAMP WITH TIME ZONE NOT NULL,
   started_at TIMESTAMP WITH TIME ZONE,
@@ -97,10 +96,10 @@ CREATE TABLE IF NOT EXISTS task_instances (
   module_instance_id TEXT NOT NULL REFERENCES module_instances(id) ON DELETE CASCADE,
   workflow_instance_id TEXT NOT NULL REFERENCES workflow_instances(id) ON DELETE CASCADE,
   status TEXT NOT NULL CHECK (status IN ('new', 'pending', 'in progress', 'completed', 'cancelled')),
+  owner JSONB,
+  team JSONB NOT NULL,
   started_at TIMESTAMP WITH TIME ZONE,
   completed_at TIMESTAMP WITH TIME ZONE,
-  owner JSONB NOT NULL,
-  team JSONB NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
@@ -115,7 +114,6 @@ CREATE INDEX IF NOT EXISTS idx_workflow_instances_status ON workflow_instances(s
 CREATE INDEX IF NOT EXISTS idx_workflow_instances_client ON workflow_instances USING GIN (client);
 CREATE INDEX IF NOT EXISTS idx_workflow_instances_team ON workflow_instances USING GIN (team);
 CREATE INDEX IF NOT EXISTS idx_workflow_instances_owner ON workflow_instances USING GIN (owner);
-CREATE INDEX IF NOT EXISTS idx_workflow_instances_task_instances ON workflow_instances USING GIN (task_instances);
 CREATE INDEX IF NOT EXISTS idx_module_instances_module_definition_id ON module_instances(module_definition_id);
 CREATE INDEX IF NOT EXISTS idx_module_instances_workflow_instance_id ON module_instances(workflow_instance_id);
 CREATE INDEX IF NOT EXISTS idx_module_instances_status ON module_instances(status);
