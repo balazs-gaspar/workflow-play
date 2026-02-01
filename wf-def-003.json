@@ -1,0 +1,35 @@
+{
+  "id": "wf-def-003",
+  "name": "Quick Deployment Workflow",
+  "description": "Streamlined workflow for frontend implementation and deployment",
+  "modules": [
+    {
+      "id": "module-004",
+      "name": "Development",
+      "tasks": [
+        {
+          "id": "task-def-004",
+          "name": "Frontend implementation",
+          "team": "Development Team A",
+          "duration": 2,
+          "dependencies": []
+        }
+      ]
+    },
+    {
+      "id": "module-007",
+      "name": "Deployment",
+      "tasks": [
+        {
+          "id": "task-def-009",
+          "name": "Production deployment",
+          "team": "Development Team A",
+          "duration": 1,
+          "dependencies": [
+            "task-def-004"
+          ]
+        }
+      ]
+    }
+  ]
+}

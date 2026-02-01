@@ -1,0 +1,20 @@
+{
+  "id": "wf-def-004",
+  "name": "Planning Workflow",
+  "description": "Initial planning and requirements gathering workflow",
+  "modules": [
+    {
+      "id": "module-006",
+      "name": "Planning",
+      "tasks": [
+        {
+          "id": "task-def-008",
+          "name": "Requirements gathering",
+          "team": "Project Management",
+          "duration": 0.5,
+          "dependencies": []
+        }
+      ]
+    }
+  ]
+}
