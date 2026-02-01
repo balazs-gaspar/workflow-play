@@ -25,6 +25,8 @@ This will create all the necessary tables:
 - `task_definitions`
 - `task_dependency_definitions`
 - `workflow_instances`
+- `module_instances`
+- `task_instances`
 
 ### 2. Seed the Database
 
@@ -77,6 +79,8 @@ If you need to add write capabilities later, you'll need to:
 
 ### Instance Tables
 - **workflow_instances**: Actual workflow executions (with embedded task instances)
+- **module_instances**: Instances of modules within workflow executions
+- **task_instances**: Individual task executions with status, owner, and team tracking
 
 ### Supporting Tables
 - **users**: User records
