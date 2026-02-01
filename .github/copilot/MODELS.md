@@ -258,16 +258,16 @@ new → in progress → completed
 ### Tables/Collections
 
 1. **task_definitions** - Reusable task templates
-2. **workflow_definitions** - Reusable workflow templates
-3. **workflow_instances** - Actual workflow executions (with embedded task instances)
-4. **users** - User records
-5. **teams** - Team records
-6. **clients** - Client records
+2. **workflow_instances** - Actual workflow executions (with embedded task instances and workflow definition references)
+3. **users** - User records
+4. **teams** - Team records
+5. **clients** - Client records
+
+**Note**: In the current implementation, workflow definitions are referenced within workflow instances rather than stored as separate entities.
 
 ### Indexing
 
 For optimal query performance, consider indexing:
-- **workflow_definitions**: `name`
 - **workflow_instances**: `workflowDefinitionId`, `status`, `client.id`, `team.id`, `owner.id`, `taskInstances.status`, `taskInstances.owner.id`, `taskInstances.dependencies`
 - **task_definitions**: `category`, `requiredSkills`
 - Composite indexes: `(status, updatedAt)`, `(team.id, status)`
@@ -279,4 +279,3 @@ For optimal query performance, consider indexing:
 - Prevent circular dependencies in task instance dependency chains
 - Cascade updates when users/teams are modified
 - Ensure task instances reference valid task definitions
-- Ensure workflow instances reference valid workflow definitions
