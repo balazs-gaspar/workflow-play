@@ -15,7 +15,8 @@ function Home() {
         </div>
         
         <div className="feature-card">
-          <h2>🔄 Instances</h2>
+          <h2>🔄 Manage Workflow Instances</h2>
+          <Link to="/manage/workflows" className="btn">View Workflows</Link>
           <p>Track workflow instances and their execution status for clients.</p>
         </div>
         
