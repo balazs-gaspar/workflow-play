@@ -57,8 +57,62 @@ From these definitions, instance models are created for actual workflow executio
 - **Team Collaboration**: Assign tasks to team members and track progress
 - **Status Tracking**: Monitor workflow and task statuses in real-time
 - **Recommendation System**: POC for intelligent task and resource recommendations
+- **Web Application**: Astro + React frontend with Supabase backend
+- **GitHub Pages Deployment**: Automatic deployment via GitHub Actions
+- **No Authentication Required**: Public read-only access to workflow data
+
+## Live Application
+
+The application is deployed to GitHub Pages and can be accessed at:
+**https://balazs-gaspar.github.io/workflow-play/**
+
+The frontend is built with Astro and React, using Supabase as the backend database.
+
+## Project Structure
+
+```
+workflow-play/
+├── frontend/              # Astro + React frontend application
+│   ├── src/
+│   │   ├── components/   # React components
+│   │   ├── layouts/      # Astro layouts
+│   │   ├── lib/          # Supabase client and utilities
+│   │   └── pages/        # Page routes
+│   └── README.md         # Frontend documentation
+├── supabase/             # Database schema and seed data
+│   ├── schema.sql        # Database table definitions
+│   ├── seed.sql          # Sample data
+│   └── README.md         # Database setup instructions
+├── *.json                # Original mock data files
+└── .github/
+    └── workflows/
+        └── deploy.yml    # GitHub Pages deployment workflow
+```
 
 ## Getting Started
+
+### Option 1: View the Live Application
+
+Visit the deployed application at https://balazs-gaspar.github.io/workflow-play/
+
+### Option 2: Run Locally
+
+1. **Review the Data Models**
+   - See **[MODELS.md](.github/copilot/MODELS.md)** for complete data structure documentation
+
+2. **Set Up Supabase Database**
+   - Follow instructions in **[supabase/README.md](supabase/README.md)**
+   - Create a Supabase project
+   - Run the schema.sql to create tables
+   - Run the seed.sql to populate with sample data
+
+3. **Run the Frontend**
+   - Follow instructions in **[frontend/README.md](frontend/README.md)**
+   - Install dependencies: `cd frontend && npm install`
+   - Configure environment variables (copy `.env.example` to `.env`)
+   - Start dev server: `npm run dev`
+
+### Option 3: Explore the Data Files
 
 1. Review **[MODELS.md](.github/copilot/MODELS.md)** to understand the data structure
 2. Explore the definition files to see how workflows, modules, and tasks are defined
