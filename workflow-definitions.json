@@ -1,0 +1,52 @@
+[
+  {
+    "id": "wf-def-001",
+    "name": "Dashboard Design Workflow",
+    "description": "Complete workflow for designing a dashboard interface including research, design, and validation",
+    "taskDefinitions": ["task-def-002", "task-def-001", "task-def-003"],
+    "defaultDependencies": {
+      "task-def-003": ["task-def-001"]
+    },
+    "estimatedTotalHours": 18,
+    "createdAt": "2026-01-01T10:00:00Z",
+    "updatedAt": "2026-01-01T10:00:00Z"
+  },
+  {
+    "id": "wf-def-002",
+    "name": "Full Stack Development Workflow",
+    "description": "Complete workflow for full stack application development from planning to deployment",
+    "taskDefinitions": ["task-def-008", "task-def-006", "task-def-004", "task-def-005", "task-def-007", "task-def-009"],
+    "defaultDependencies": {
+      "task-def-006": ["task-def-008"],
+      "task-def-004": ["task-def-006"],
+      "task-def-005": ["task-def-006"],
+      "task-def-007": ["task-def-004", "task-def-005"],
+      "task-def-009": ["task-def-007"]
+    },
+    "estimatedTotalHours": 68,
+    "createdAt": "2026-01-01T10:00:00Z",
+    "updatedAt": "2026-01-01T10:00:00Z"
+  },
+  {
+    "id": "wf-def-003",
+    "name": "MVP Development Workflow",
+    "description": "Minimal workflow for building and deploying an MVP",
+    "taskDefinitions": ["task-def-004", "task-def-009"],
+    "defaultDependencies": {
+      "task-def-009": ["task-def-004"]
+    },
+    "estimatedTotalHours": 24,
+    "createdAt": "2026-01-01T10:00:00Z",
+    "updatedAt": "2026-01-01T10:00:00Z"
+  },
+  {
+    "id": "wf-def-004",
+    "name": "Requirements Discovery Workflow",
+    "description": "Workflow for gathering and documenting requirements",
+    "taskDefinitions": ["task-def-008"],
+    "defaultDependencies": {},
+    "estimatedTotalHours": 4,
+    "createdAt": "2026-01-01T10:00:00Z",
+    "updatedAt": "2026-01-01T10:00:00Z"
+  }
+]

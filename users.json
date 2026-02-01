@@ -1,0 +1,32 @@
+[
+  {
+    "id": "user-001",
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "role": "Senior Developer"
+  },
+  {
+    "id": "user-002",
+    "name": "Jane Smith",
+    "email": "jane.smith@example.com",
+    "role": "UI/UX Designer"
+  },
+  {
+    "id": "user-003",
+    "name": "Mike Johnson",
+    "email": "mike.johnson@example.com",
+    "role": "Backend Developer"
+  },
+  {
+    "id": "user-004",
+    "name": "Sarah Williams",
+    "email": "sarah.williams@example.com",
+    "role": "QA Engineer"
+  },
+  {
+    "id": "user-005",
+    "name": "David Brown",
+    "email": "david.brown@example.com",
+    "role": "Project Manager"
+  }
+]

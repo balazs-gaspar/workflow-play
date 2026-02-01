@@ -1,0 +1,17 @@
+[
+  {
+    "id": "team-001",
+    "name": "Development Team A",
+    "members": ["user-001", "user-002", "user-003"]
+  },
+  {
+    "id": "team-002",
+    "name": "QA Team",
+    "members": ["user-004"]
+  },
+  {
+    "id": "team-003",
+    "name": "Project Management",
+    "members": ["user-005"]
+  }
+]
