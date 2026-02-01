@@ -78,6 +78,33 @@ CREATE TABLE IF NOT EXISTS workflow_instances (
   completed_at TIMESTAMP WITH TIME ZONE
 );
 
+-- Create module_instances table
+CREATE TABLE IF NOT EXISTS module_instances (
+  id TEXT PRIMARY KEY,
+  module_definition_id TEXT NOT NULL REFERENCES module_definitions(id) ON DELETE CASCADE,
+  workflow_instance_id TEXT NOT NULL REFERENCES workflow_instances(id) ON DELETE CASCADE,
+  status TEXT NOT NULL CHECK (status IN ('new', 'in progress', 'completed', 'cancelled')),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  started_at TIMESTAMP WITH TIME ZONE,
+  completed_at TIMESTAMP WITH TIME ZONE
+);
+
+-- Create task_instances table
+CREATE TABLE IF NOT EXISTS task_instances (
+  id TEXT PRIMARY KEY,
+  task_definition_id TEXT NOT NULL REFERENCES task_definitions(id) ON DELETE CASCADE,
+  module_instance_id TEXT NOT NULL REFERENCES module_instances(id) ON DELETE CASCADE,
+  workflow_instance_id TEXT NOT NULL REFERENCES workflow_instances(id) ON DELETE CASCADE,
+  status TEXT NOT NULL CHECK (status IN ('new', 'pending', 'in progress', 'completed', 'cancelled')),
+  started_at TIMESTAMP WITH TIME ZONE,
+  completed_at TIMESTAMP WITH TIME ZONE,
+  owner JSONB NOT NULL,
+  team JSONB NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Create indexes for better query performance
 CREATE INDEX IF NOT EXISTS idx_module_definitions_workflow_id ON module_definitions(workflow_definition_id);
 CREATE INDEX IF NOT EXISTS idx_task_definitions_module_id ON task_definitions(module_definition_id);
@@ -89,6 +116,15 @@ CREATE INDEX IF NOT EXISTS idx_workflow_instances_client ON workflow_instances U
 CREATE INDEX IF NOT EXISTS idx_workflow_instances_team ON workflow_instances USING GIN (team);
 CREATE INDEX IF NOT EXISTS idx_workflow_instances_owner ON workflow_instances USING GIN (owner);
 CREATE INDEX IF NOT EXISTS idx_workflow_instances_task_instances ON workflow_instances USING GIN (task_instances);
+CREATE INDEX IF NOT EXISTS idx_module_instances_module_definition_id ON module_instances(module_definition_id);
+CREATE INDEX IF NOT EXISTS idx_module_instances_workflow_instance_id ON module_instances(workflow_instance_id);
+CREATE INDEX IF NOT EXISTS idx_module_instances_status ON module_instances(status);
+CREATE INDEX IF NOT EXISTS idx_task_instances_task_definition_id ON task_instances(task_definition_id);
+CREATE INDEX IF NOT EXISTS idx_task_instances_module_instance_id ON task_instances(module_instance_id);
+CREATE INDEX IF NOT EXISTS idx_task_instances_workflow_instance_id ON task_instances(workflow_instance_id);
+CREATE INDEX IF NOT EXISTS idx_task_instances_status ON task_instances(status);
+CREATE INDEX IF NOT EXISTS idx_task_instances_owner ON task_instances USING GIN (owner);
+CREATE INDEX IF NOT EXISTS idx_task_instances_team ON task_instances USING GIN (team);
 
 -- Enable Row Level Security (RLS) for public read access
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
@@ -99,6 +135,8 @@ ALTER TABLE module_definitions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE task_definitions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE task_dependency_definitions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE workflow_instances ENABLE ROW LEVEL SECURITY;
+ALTER TABLE module_instances ENABLE ROW LEVEL SECURITY;
+ALTER TABLE task_instances ENABLE ROW LEVEL SECURITY;
 
 -- Create policies for public read access (no authentication required)
 CREATE POLICY "Allow public read access on users" ON users FOR SELECT USING (true);
@@ -109,3 +147,5 @@ CREATE POLICY "Allow public read access on module_definitions" ON module_definit
 CREATE POLICY "Allow public read access on task_definitions" ON task_definitions FOR SELECT USING (true);
 CREATE POLICY "Allow public read access on task_dependency_definitions" ON task_dependency_definitions FOR SELECT USING (true);
 CREATE POLICY "Allow public read access on workflow_instances" ON workflow_instances FOR SELECT USING (true);
+CREATE POLICY "Allow public read access on module_instances" ON module_instances FOR SELECT USING (true);
+CREATE POLICY "Allow public read access on task_instances" ON task_instances FOR SELECT USING (true);
