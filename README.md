@@ -26,6 +26,7 @@ The system separates **definitions** (reusable templates) from **instances** (ac
 ## Mock Data Files
 
 ### Definitions (Templates)
+- **workflow-definitions.json** - Reusable workflow templates with task and module references
 - **task-definitions.json** - Reusable task templates
 - **module-definitions.json** - Module definitions with ownership and team assignment
 

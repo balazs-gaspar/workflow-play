@@ -104,7 +104,7 @@ pending → new → in progress → completed
 
 ## Workflow Definition Model
 
-A workflow definition is a reusable template that describes a complete work process.
+A workflow definition is a reusable template that describes a complete work process with rich metadata. This represents the principle of workflow instance that has detailed task and module information.
 
 ### Attributes
 
@@ -113,11 +113,14 @@ A workflow definition is a reusable template that describes a complete work proc
 | `id` | UUID/String | Unique identifier for the workflow definition |
 | `name` | String | Name of the workflow (e.g., "Dashboard Design Workflow") |
 | `description` | String | Description of the workflow's purpose |
-| `taskDefinitions` | Array | List of task definition IDs that are part of this workflow |
-| `defaultDependencies` | Object | Default dependency mapping between task definitions |
-| `estimatedTotalHours` | Number | Sum of estimated hours for all tasks |
-| `createdAt` | DateTime | Timestamp when the workflow definition was created |
-| `updatedAt` | DateTime | Timestamp when the workflow definition was last updated |
+| `tasks` | Array | Array of task objects that are part of this workflow |
+| `tasks[].id` | UUID/String | Unique identifier for the task within this workflow |
+| `tasks[].taskDefinitionId` | Reference | Reference to a task definition |
+| `tasks[].moduleId` | Reference | Reference to a module definition |
+| `tasks[].dependencies` | Array | Array of task IDs (from this workflow's tasks) that must be completed first |
+| `modules` | Array | Array of module objects referenced in this workflow |
+| `modules[].id` | UUID/String | Unique identifier for the module within this workflow |
+| `modules[].moduleDefinitionId` | Reference | Reference to a module definition |
 
 ### Example Structure
 
@@ -125,14 +128,31 @@ A workflow definition is a reusable template that describes a complete work proc
 {
   "id": "wf-def-001",
   "name": "Dashboard Design Workflow",
-  "description": "Complete workflow for designing a dashboard interface",
-  "taskDefinitions": ["task-def-001", "task-def-002", "task-def-003"],
-  "defaultDependencies": {
-    "task-def-003": ["task-def-001"]
-  },
-  "estimatedTotalHours": 24,
-  "createdAt": "2026-01-01T10:00:00Z",
-  "updatedAt": "2026-01-01T10:00:00Z"
+  "description": "Complete workflow for designing a dashboard interface with validation and implementation",
+  "tasks": [
+    {
+      "id": "wf-task-001",
+      "taskDefinitionId": "task-def-001",
+      "moduleId": "module-001",
+      "dependencies": []
+    },
+    {
+      "id": "wf-task-002",
+      "taskDefinitionId": "task-def-003",
+      "moduleId": "module-003",
+      "dependencies": ["wf-task-001"]
+    }
+  ],
+  "modules": [
+    {
+      "id": "wf-mod-001",
+      "moduleDefinitionId": "module-001"
+    },
+    {
+      "id": "wf-mod-002",
+      "moduleDefinitionId": "module-003"
+    }
+  ]
 }
 ```
 
@@ -285,18 +305,18 @@ new → in progress → completed
 
 ### Tables/Collections
 
-1. **task_definitions** - Reusable task templates
-2. **module_definitions** - Module definitions
-3. **workflow_instances** - Actual workflow executions (with embedded task instances and workflow definition references)
-4. **users** - User records
-5. **teams** - Team records
-6. **clients** - Client records
-
-**Note**: In the current implementation, workflow definitions are referenced within workflow instances rather than stored as separate entities.
+1. **workflow_definitions** - Reusable workflow templates with tasks and modules
+2. **task_definitions** - Reusable task templates
+3. **module_definitions** - Module definitions
+4. **workflow_instances** - Actual workflow executions (with embedded task instances and workflow definition references)
+5. **users** - User records
+6. **teams** - Team records
+7. **clients** - Client records
 
 ### Indexing
 
 For optimal query performance, consider indexing:
+- **workflow_definitions**: `id`, `tasks.taskDefinitionId`, `modules.moduleDefinitionId`
 - **workflow_instances**: `workflowDefinitionId`, `status`, `client.id`, `team.id`, `owner.id`, `taskInstances.status`, `taskInstances.owner.id`, `taskInstances.module.id`, `taskInstances.dependencies`
 - **task_definitions**: `module`, `requiredSkills`
 - **module_definitions**: `name`
