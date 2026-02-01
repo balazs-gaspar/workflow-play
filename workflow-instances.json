@@ -16,13 +16,139 @@
       "name": "David Brown"
     },
     "taskInstances": [
-      "task-inst-001",
-      "task-inst-002",
-      "task-inst-003",
-      "task-inst-004",
-      "task-inst-005",
-      "task-inst-006",
-      "task-inst-007"
+      {
+        "id": "task-inst-001",
+        "taskDefinitionId": "task-def-001",
+        "status": "completed",
+        "owner": {
+          "id": "user-002",
+          "name": "Jane Smith"
+        },
+        "team": {
+          "id": "team-001",
+          "name": "Development Team A"
+        },
+        "priority": "high",
+        "actualHours": 7,
+        "createdAt": "2026-01-15T09:00:00Z",
+        "updatedAt": "2026-01-17T16:00:00Z",
+        "startedAt": "2026-01-15T10:00:00Z",
+        "completedAt": "2026-01-17T16:00:00Z"
+      },
+      {
+        "id": "task-inst-002",
+        "taskDefinitionId": "task-def-002",
+        "status": "completed",
+        "owner": {
+          "id": "user-002",
+          "name": "Jane Smith"
+        },
+        "team": {
+          "id": "team-001",
+          "name": "Development Team A"
+        },
+        "priority": "medium",
+        "actualHours": 5,
+        "createdAt": "2026-01-15T09:00:00Z",
+        "updatedAt": "2026-01-18T14:30:00Z",
+        "startedAt": "2026-01-15T10:00:00Z",
+        "completedAt": "2026-01-18T14:30:00Z"
+      },
+      {
+        "id": "task-inst-003",
+        "taskDefinitionId": "task-def-003",
+        "status": "completed",
+        "owner": {
+          "id": "user-002",
+          "name": "Jane Smith"
+        },
+        "team": {
+          "id": "team-001",
+          "name": "Development Team A"
+        },
+        "priority": "medium",
+        "actualHours": 4,
+        "createdAt": "2026-01-17T10:00:00Z",
+        "updatedAt": "2026-01-19T15:00:00Z",
+        "startedAt": "2026-01-17T16:30:00Z",
+        "completedAt": "2026-01-19T15:00:00Z"
+      },
+      {
+        "id": "task-inst-004",
+        "taskDefinitionId": "task-def-004",
+        "status": "in progress",
+        "owner": {
+          "id": "user-001",
+          "name": "John Doe"
+        },
+        "team": {
+          "id": "team-001",
+          "name": "Development Team A"
+        },
+        "priority": "high",
+        "actualHours": 10,
+        "createdAt": "2026-01-18T10:00:00Z",
+        "updatedAt": "2026-01-31T15:30:00Z",
+        "startedAt": "2026-01-18T11:00:00Z",
+        "completedAt": null
+      },
+      {
+        "id": "task-inst-005",
+        "taskDefinitionId": "task-def-005",
+        "status": "in progress",
+        "owner": {
+          "id": "user-003",
+          "name": "Mike Johnson"
+        },
+        "team": {
+          "id": "team-001",
+          "name": "Development Team A"
+        },
+        "priority": "high",
+        "actualHours": 12,
+        "createdAt": "2026-01-18T10:00:00Z",
+        "updatedAt": "2026-01-31T14:00:00Z",
+        "startedAt": "2026-01-19T18:00:00Z",
+        "completedAt": null
+      },
+      {
+        "id": "task-inst-006",
+        "taskDefinitionId": "task-def-006",
+        "status": "completed",
+        "owner": {
+          "id": "user-003",
+          "name": "Mike Johnson"
+        },
+        "team": {
+          "id": "team-001",
+          "name": "Development Team A"
+        },
+        "priority": "critical",
+        "actualHours": 9,
+        "createdAt": "2026-01-16T09:00:00Z",
+        "updatedAt": "2026-01-19T17:00:00Z",
+        "startedAt": "2026-01-16T10:00:00Z",
+        "completedAt": "2026-01-19T17:00:00Z"
+      },
+      {
+        "id": "task-inst-007",
+        "taskDefinitionId": "task-def-007",
+        "status": "pending",
+        "owner": {
+          "id": "user-004",
+          "name": "Sarah Williams"
+        },
+        "team": {
+          "id": "team-002",
+          "name": "QA Team"
+        },
+        "priority": "high",
+        "actualHours": 0,
+        "createdAt": "2026-01-20T10:00:00Z",
+        "updatedAt": "2026-01-20T10:00:00Z",
+        "startedAt": null,
+        "completedAt": null
+      }
     ],
     "createdAt": "2026-01-15T10:00:00Z",
     "updatedAt": "2026-01-31T15:30:00Z",
@@ -61,7 +187,25 @@
       "name": "David Brown"
     },
     "taskInstances": [
-      "task-inst-008"
+      {
+        "id": "task-inst-008",
+        "taskDefinitionId": "task-def-008",
+        "status": "new",
+        "owner": {
+          "id": "user-005",
+          "name": "David Brown"
+        },
+        "team": {
+          "id": "team-003",
+          "name": "Project Management"
+        },
+        "priority": "high",
+        "actualHours": 0,
+        "createdAt": "2026-01-30T09:00:00Z",
+        "updatedAt": "2026-01-30T09:00:00Z",
+        "startedAt": null,
+        "completedAt": null
+      }
     ],
     "createdAt": "2026-01-30T09:00:00Z",
     "updatedAt": "2026-01-30T09:00:00Z",
@@ -86,8 +230,44 @@
       "name": "David Brown"
     },
     "taskInstances": [
-      "task-inst-009",
-      "task-inst-010"
+      {
+        "id": "task-inst-009",
+        "taskDefinitionId": "task-def-004",
+        "status": "completed",
+        "owner": {
+          "id": "user-001",
+          "name": "John Doe"
+        },
+        "team": {
+          "id": "team-001",
+          "name": "Development Team A"
+        },
+        "priority": "critical",
+        "actualHours": 18,
+        "createdAt": "2025-12-02T09:00:00Z",
+        "updatedAt": "2026-01-10T18:00:00Z",
+        "startedAt": "2025-12-02T10:00:00Z",
+        "completedAt": "2026-01-10T18:00:00Z"
+      },
+      {
+        "id": "task-inst-010",
+        "taskDefinitionId": "task-def-009",
+        "status": "completed",
+        "owner": {
+          "id": "user-003",
+          "name": "Mike Johnson"
+        },
+        "team": {
+          "id": "team-001",
+          "name": "Development Team A"
+        },
+        "priority": "critical",
+        "actualHours": 6,
+        "createdAt": "2026-01-11T09:00:00Z",
+        "updatedAt": "2026-01-20T16:00:00Z",
+        "startedAt": "2026-01-11T10:00:00Z",
+        "completedAt": "2026-01-20T16:00:00Z"
+      }
     ],
     "createdAt": "2025-12-01T10:00:00Z",
     "updatedAt": "2026-01-20T16:00:00Z",

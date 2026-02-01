@@ -16,8 +16,8 @@ The system separates **definitions** (reusable templates) from **instances** (ac
 - **Task Definitions**: Reusable task templates (e.g., "Create wireframes")
 
 ### Instances (Executions)
-- **Workflow Instances**: Actual workflow executions for specific clients
-- **Task Instances**: Actual task executions within workflow instances
+- **Workflow Instances**: Actual workflow executions for specific clients (with embedded task instances)
+- **Task Instances**: Actual task executions embedded within workflow instances
 
 ## Documentation
 
@@ -30,8 +30,7 @@ The system separates **definitions** (reusable templates) from **instances** (ac
 - **task-definitions.json** - Reusable task templates
 
 ### Instances (Executions)
-- **workflow-instances.json** - Actual workflow executions for clients
-- **task-instances.json** - Actual task executions
+- **workflow-instances.json** - Actual workflow executions for clients (with embedded task instances)
 
 ### Supporting Data
 - **users.json** - User records
@@ -42,8 +41,8 @@ The system separates **definitions** (reusable templates) from **instances** (ac
 
 - **Template-Based Workflows**: Define workflows once, use many times
 - **Task Reusability**: Reuse task definitions across multiple workflows
-- **Instance Tracking**: Track actual executions separately from templates
-- **Dependency Management**: Manage task dependencies at the instance level
+- **Embedded Task Instances**: Task instances are embedded within workflow instances for better data locality
+- **Dependency Management**: Manage task dependencies at the workflow instance level
 - **Team Collaboration**: Assign tasks to team members and track progress
 - **Status Tracking**: Monitor workflow and task statuses in real-time
 - **Recommendation System**: POC for intelligent task and resource recommendations
@@ -54,5 +53,5 @@ The system separates **definitions** (reusable templates) from **instances** (ac
 2. Explore the mock data files to see examples of:
    - How workflow definitions reference task definitions
    - How workflow instances are created from definitions for specific clients
-   - How task instances are created from task definitions within workflow instances
-   - How dependencies work at the instance level
+   - How task instances are embedded within workflow instances
+   - How dependencies are managed at the workflow instance level

@@ -23,7 +23,7 @@ A task definition is a reusable template that describes a type of work.
 
 ## Task Instance Model
 
-A task instance represents an actual execution of a task definition within a workflow.
+A task instance represents an actual execution of a task definition within a workflow. Task instances are embedded within workflow instances.
 
 ### Attributes
 
@@ -31,7 +31,6 @@ A task instance represents an actual execution of a task definition within a wor
 |-----------|------|-------------|
 | `id` | UUID/String | Unique identifier for the task instance |
 | `taskDefinitionId` | Reference | Reference to the task definition |
-| `workflowInstanceId` | Reference | Reference to the workflow instance this task belongs to |
 | `status` | Enum | Current status: `pending`, `new`, `in progress`, `completed`, `cancelled` |
 | `owner` | Reference | Reference to the user assigned to complete the task |
 | `team` | Reference | Reference to the team responsible for the task |
@@ -56,7 +55,6 @@ pending → new → in progress → completed
 {
   "id": "task-inst-001",
   "taskDefinitionId": "task-def-001",
-  "workflowInstanceId": "wf-inst-001",
   "status": "in progress",
   "owner": {
     "id": "user-002",
@@ -124,7 +122,7 @@ A workflow instance represents an actual execution of a workflow definition for 
 | `client` | Reference | Reference to the client for whom the workflow is being executed |
 | `team` | Reference | Reference to the team responsible for the workflow |
 | `owner` | Reference | Reference to the user who owns/manages the workflow |
-| `taskInstances` | Array | List of task instance IDs that belong to this workflow |
+| `taskInstances` | Array | Array of task instance objects that belong to this workflow |
 | `dependencies` | Object | Dependency mapping between task instances in this workflow |
 | `createdAt` | DateTime | Timestamp when the workflow instance was created |
 | `updatedAt` | DateTime | Timestamp when the workflow instance was last updated |
@@ -158,9 +156,48 @@ new → in progress → completed
     "id": "user-005",
     "name": "David Brown"
   },
-  "taskInstances": ["task-inst-001", "task-inst-002", "task-inst-003"],
+  "taskInstances": [
+    {
+      "id": "task-inst-001",
+      "taskDefinitionId": "task-def-001",
+      "status": "completed",
+      "owner": {
+        "id": "user-002",
+        "name": "Jane Smith"
+      },
+      "team": {
+        "id": "team-001",
+        "name": "Development Team A"
+      },
+      "priority": "high",
+      "actualHours": 7,
+      "createdAt": "2026-01-15T09:00:00Z",
+      "updatedAt": "2026-01-17T16:00:00Z",
+      "startedAt": "2026-01-15T10:00:00Z",
+      "completedAt": "2026-01-17T16:00:00Z"
+    },
+    {
+      "id": "task-inst-002",
+      "taskDefinitionId": "task-def-002",
+      "status": "in progress",
+      "owner": {
+        "id": "user-001",
+        "name": "John Doe"
+      },
+      "team": {
+        "id": "team-001",
+        "name": "Development Team A"
+      },
+      "priority": "high",
+      "actualHours": 3,
+      "createdAt": "2026-01-16T09:00:00Z",
+      "updatedAt": "2026-01-31T15:30:00Z",
+      "startedAt": "2026-01-16T10:00:00Z",
+      "completedAt": null
+    }
+  ],
   "dependencies": {
-    "task-inst-003": ["task-inst-001"]
+    "task-inst-002": ["task-inst-001"]
   },
   "createdAt": "2026-01-15T10:00:00Z",
   "updatedAt": "2026-01-31T15:30:00Z",
@@ -208,10 +245,10 @@ new → in progress → completed
 - A **Workflow Instance** belongs to one **Client**
 - A **Workflow Instance** is managed by one **Team**
 - A **Workflow Instance** has one **Owner** (User)
-- A **Workflow Instance** contains multiple **Task Instances**
+- A **Workflow Instance** contains multiple **Task Instances** (embedded)
 - A **Workflow Instance** defines **Dependencies** between Task Instances
 - A **Task Instance** is created from a **Task Definition**
-- A **Task Instance** belongs to one **Workflow Instance**
+- A **Task Instance** is embedded within one **Workflow Instance**
 - A **Task Instance** is assigned to one **User** (owner)
 - A **Task Instance** belongs to one **Team**
 - A **Team** contains multiple **Users** (members)
@@ -221,21 +258,19 @@ new → in progress → completed
 ### Tables/Collections
 
 1. **task_definitions** - Reusable task templates
-2. **task_instances** - Actual task executions
-3. **workflow_definitions** - Reusable workflow templates
-4. **workflow_instances** - Actual workflow executions
-5. **users** - User records
-6. **teams** - Team records
-7. **clients** - Client records
+2. **workflow_definitions** - Reusable workflow templates
+3. **workflow_instances** - Actual workflow executions (with embedded task instances)
+4. **users** - User records
+5. **teams** - Team records
+6. **clients** - Client records
 
 ### Indexing
 
 For optimal query performance, consider indexing:
 - **workflow_definitions**: `name`
-- **workflow_instances**: `workflowDefinitionId`, `status`, `client.id`, `team.id`, `owner.id`
+- **workflow_instances**: `workflowDefinitionId`, `status`, `client.id`, `team.id`, `owner.id`, `taskInstances.status`, `taskInstances.owner.id`
 - **task_definitions**: `category`, `requiredSkills`
-- **task_instances**: `taskDefinitionId`, `workflowInstanceId`, `status`, `owner.id`, `team.id`
-- Composite indexes: `(status, updatedAt)`, `(team.id, status)`, `(workflowInstanceId, status)`
+- Composite indexes: `(status, updatedAt)`, `(team.id, status)`
 
 ### Data Integrity
 
