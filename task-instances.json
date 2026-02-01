@@ -12,7 +12,6 @@
       "id": "team-001",
       "name": "Development Team A"
     },
-    "dependencies": [],
     "priority": "high",
     "actualHours": 7,
     "createdAt": "2026-01-15T09:00:00Z",
@@ -33,7 +32,6 @@
       "id": "team-001",
       "name": "Development Team A"
     },
-    "dependencies": [],
     "priority": "medium",
     "actualHours": 5,
     "createdAt": "2026-01-15T09:00:00Z",
@@ -54,7 +52,6 @@
       "id": "team-001",
       "name": "Development Team A"
     },
-    "dependencies": ["task-inst-001"],
     "priority": "medium",
     "actualHours": 4,
     "createdAt": "2026-01-17T10:00:00Z",
@@ -75,7 +72,6 @@
       "id": "team-001",
       "name": "Development Team A"
     },
-    "dependencies": ["task-inst-001"],
     "priority": "high",
     "actualHours": 10,
     "createdAt": "2026-01-18T10:00:00Z",
@@ -96,7 +92,6 @@
       "id": "team-001",
       "name": "Development Team A"
     },
-    "dependencies": ["task-inst-006"],
     "priority": "high",
     "actualHours": 12,
     "createdAt": "2026-01-18T10:00:00Z",
@@ -117,7 +112,6 @@
       "id": "team-001",
       "name": "Development Team A"
     },
-    "dependencies": [],
     "priority": "critical",
     "actualHours": 9,
     "createdAt": "2026-01-16T09:00:00Z",
@@ -138,7 +132,6 @@
       "id": "team-002",
       "name": "QA Team"
     },
-    "dependencies": ["task-inst-004", "task-inst-005"],
     "priority": "high",
     "actualHours": 0,
     "createdAt": "2026-01-20T10:00:00Z",
@@ -159,7 +152,6 @@
       "id": "team-003",
       "name": "Project Management"
     },
-    "dependencies": [],
     "priority": "high",
     "actualHours": 0,
     "createdAt": "2026-01-30T09:00:00Z",
@@ -180,7 +172,6 @@
       "id": "team-001",
       "name": "Development Team A"
     },
-    "dependencies": [],
     "priority": "critical",
     "actualHours": 18,
     "createdAt": "2025-12-02T09:00:00Z",
@@ -201,7 +192,6 @@
       "id": "team-001",
       "name": "Development Team A"
     },
-    "dependencies": ["task-inst-009"],
     "priority": "critical",
     "actualHours": 6,
     "createdAt": "2026-01-11T09:00:00Z",

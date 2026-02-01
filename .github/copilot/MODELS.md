@@ -21,21 +21,6 @@ A task definition is a reusable template that describes a type of work.
 | `createdAt` | DateTime | Timestamp when the task definition was created |
 | `updatedAt` | DateTime | Timestamp when the task definition was last updated |
 
-### Example Structure
-
-```json
-{
-  "id": "task-def-001",
-  "name": "Create wireframes",
-  "description": "Design wireframes for user interfaces",
-  "estimatedHours": 8,
-  "requiredSkills": ["Figma", "UI/UX Design", "Wireframing"],
-  "category": "Design",
-  "createdAt": "2026-01-01T10:00:00Z",
-  "updatedAt": "2026-01-01T10:00:00Z"
-}
-```
-
 ## Task Instance Model
 
 A task instance represents an actual execution of a task definition within a workflow.
@@ -50,7 +35,6 @@ A task instance represents an actual execution of a task definition within a wor
 | `status` | Enum | Current status: `pending`, `new`, `in progress`, `completed`, `cancelled` |
 | `owner` | Reference | Reference to the user assigned to complete the task |
 | `team` | Reference | Reference to the team responsible for the task |
-| `dependencies` | Array | List of task instance IDs that must be completed before this task can start |
 | `priority` | Enum | Task priority: `low`, `medium`, `high`, `critical` |
 | `actualHours` | Number | Actual time spent on the task |
 | `createdAt` | DateTime | Timestamp when the task instance was created |
@@ -82,7 +66,6 @@ pending → new → in progress → completed
     "id": "team-001",
     "name": "Development Team A"
   },
-  "dependencies": [],
   "priority": "high",
   "actualHours": 5,
   "createdAt": "2026-01-15T09:00:00Z",
@@ -106,7 +89,6 @@ A workflow definition is a reusable template that describes a complete work proc
 | `taskDefinitions` | Array | List of task definition IDs that are part of this workflow |
 | `defaultDependencies` | Object | Default dependency mapping between task definitions |
 | `estimatedTotalHours` | Number | Sum of estimated hours for all tasks |
-| `category` | String | Category of the workflow (e.g., "Web Development", "Mobile App") |
 | `createdAt` | DateTime | Timestamp when the workflow definition was created |
 | `updatedAt` | DateTime | Timestamp when the workflow definition was last updated |
 
@@ -143,6 +125,7 @@ A workflow instance represents an actual execution of a workflow definition for 
 | `team` | Reference | Reference to the team responsible for the workflow |
 | `owner` | Reference | Reference to the user who owns/manages the workflow |
 | `taskInstances` | Array | List of task instance IDs that belong to this workflow |
+| `dependencies` | Object | Dependency mapping between task instances in this workflow |
 | `createdAt` | DateTime | Timestamp when the workflow instance was created |
 | `updatedAt` | DateTime | Timestamp when the workflow instance was last updated |
 | `startedAt` | DateTime | Timestamp when the workflow started (optional) |
@@ -176,6 +159,9 @@ new → in progress → completed
     "name": "David Brown"
   },
   "taskInstances": ["task-inst-001", "task-inst-002", "task-inst-003"],
+  "dependencies": {
+    "task-inst-003": ["task-inst-001"]
+  },
   "createdAt": "2026-01-15T10:00:00Z",
   "updatedAt": "2026-01-31T15:30:00Z",
   "startedAt": "2026-01-15T10:00:00Z",
@@ -201,7 +187,6 @@ new → in progress → completed
 | `id` | UUID/String | Unique identifier |
 | `name` | String | Team name |
 | `members` | Array | List of user references |
-| `capabilities` | Array | List of team skills/capabilities (optional) |
 
 ### User Model
 
@@ -211,7 +196,6 @@ new → in progress → completed
 | `name` | String | User's full name |
 | `email` | String | User's email address |
 | `role` | String | User's role in the organization |
-| `skills` | Array | List of user skills (optional) |
 
 ## Relationships
 
@@ -225,11 +209,11 @@ new → in progress → completed
 - A **Workflow Instance** is managed by one **Team**
 - A **Workflow Instance** has one **Owner** (User)
 - A **Workflow Instance** contains multiple **Task Instances**
+- A **Workflow Instance** defines **Dependencies** between Task Instances
 - A **Task Instance** is created from a **Task Definition**
 - A **Task Instance** belongs to one **Workflow Instance**
 - A **Task Instance** is assigned to one **User** (owner)
 - A **Task Instance** belongs to one **Team**
-- A **Task Instance** can have multiple **Dependencies** (other Task Instances)
 - A **Team** contains multiple **Users** (members)
 
 ## Database Considerations
@@ -247,17 +231,17 @@ new → in progress → completed
 ### Indexing
 
 For optimal query performance, consider indexing:
-- **workflow_definitions**: `category`, `name`
+- **workflow_definitions**: `name`
 - **workflow_instances**: `workflowDefinitionId`, `status`, `client.id`, `team.id`, `owner.id`
 - **task_definitions**: `category`, `requiredSkills`
-- **task_instances**: `taskDefinitionId`, `workflowInstanceId`, `status`, `owner.id`, `team.id`, `dependencies`
+- **task_instances**: `taskDefinitionId`, `workflowInstanceId`, `status`, `owner.id`, `team.id`
 - Composite indexes: `(status, updatedAt)`, `(team.id, status)`, `(workflowInstanceId, status)`
 
 ### Data Integrity
 
 - Ensure referential integrity for all references
 - Validate status transitions
-- Prevent circular dependencies in task instances
+- Prevent circular dependencies in workflow instance dependency mappings
 - Cascade updates when users/teams are modified
 - Ensure task instances reference valid task definitions
 - Ensure workflow instances reference valid workflow definitions

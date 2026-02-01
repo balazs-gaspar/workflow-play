@@ -8,7 +8,6 @@
       "task-def-003": ["task-def-001"]
     },
     "estimatedTotalHours": 18,
-    "category": "Web Development",
     "createdAt": "2026-01-01T10:00:00Z",
     "updatedAt": "2026-01-01T10:00:00Z"
   },
@@ -25,7 +24,6 @@
       "task-def-009": ["task-def-007"]
     },
     "estimatedTotalHours": 68,
-    "category": "Web Development",
     "createdAt": "2026-01-01T10:00:00Z",
     "updatedAt": "2026-01-01T10:00:00Z"
   },
@@ -38,7 +36,6 @@
       "task-def-009": ["task-def-004"]
     },
     "estimatedTotalHours": 24,
-    "category": "Web Development",
     "createdAt": "2026-01-01T10:00:00Z",
     "updatedAt": "2026-01-01T10:00:00Z"
   },
@@ -49,7 +46,6 @@
     "taskDefinitions": ["task-def-008"],
     "defaultDependencies": {},
     "estimatedTotalHours": 4,
-    "category": "Planning",
     "createdAt": "2026-01-01T10:00:00Z",
     "updatedAt": "2026-01-01T10:00:00Z"
   }
