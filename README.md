@@ -26,11 +26,10 @@ The system separates **definitions** (reusable templates) from **instances** (ac
 ## Mock Data Files
 
 ### Definitions (Templates)
-- **workflow-definitions.json** - Reusable workflow templates
 - **task-definitions.json** - Reusable task templates
 
 ### Instances (Executions)
-- **workflow-instances.json** - Actual workflow executions for clients (with embedded task instances)
+- **workflow-instances.json** - Actual workflow executions for clients (with embedded task instances and workflow definitions)
 
 ### Supporting Data
 - **users.json** - User records
