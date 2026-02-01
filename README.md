@@ -27,6 +27,7 @@ The system separates **definitions** (reusable templates) from **instances** (ac
 
 ### Definitions (Templates)
 - **task-definitions.json** - Reusable task templates
+- **module-definitions.json** - Module definitions with ownership and team assignment
 
 ### Instances (Executions)
 - **workflow-instances.json** - Actual workflow executions for clients (with embedded task instances and workflow definitions)
