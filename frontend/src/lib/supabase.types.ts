@@ -215,6 +215,7 @@ export type Database = {
         Row: {
           completed_at: string | null
           created_at: string | null
+          due_date: string | null
           id: string
           module_instance_id: string
           owner: Json | null
@@ -228,6 +229,7 @@ export type Database = {
         Insert: {
           completed_at?: string | null
           created_at?: string | null
+          due_date?: string | null
           id: string
           module_instance_id: string
           owner?: Json | null
@@ -241,6 +243,7 @@ export type Database = {
         Update: {
           completed_at?: string | null
           created_at?: string | null
+          due_date?: string | null
           id?: string
           module_instance_id?: string
           owner?: Json | null

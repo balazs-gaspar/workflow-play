@@ -98,6 +98,7 @@ CREATE TABLE IF NOT EXISTS task_instances (
   status TEXT NOT NULL CHECK (status IN ('new', 'pending', 'in_progress', 'completed', 'cancelled')),
   owner JSONB,
   team JSONB NOT NULL,
+  due_date TIMESTAMP WITH TIME ZONE,
   started_at TIMESTAMP WITH TIME ZONE,
   completed_at TIMESTAMP WITH TIME ZONE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -123,6 +124,7 @@ CREATE INDEX IF NOT EXISTS idx_task_instances_workflow_instance_id ON task_insta
 CREATE INDEX IF NOT EXISTS idx_task_instances_status ON task_instances(status);
 CREATE INDEX IF NOT EXISTS idx_task_instances_owner ON task_instances USING GIN (owner);
 CREATE INDEX IF NOT EXISTS idx_task_instances_team ON task_instances USING GIN (team);
+CREATE INDEX IF NOT EXISTS idx_task_instances_due_date ON task_instances(due_date);
 
 -- Enable Row Level Security (RLS) for public read access
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
