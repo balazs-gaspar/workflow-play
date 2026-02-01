@@ -3,10 +3,14 @@ import { supabase } from '../lib/supabase';
 
 interface TaskInstance {
   id: string;
-  workflow_instance_id: string;
   task_definition_id: string;
-  status: string;
-  assigned_to: string | null;
+  module_instance_id: string;
+  workflow_instance_id: string;
+  status: 'new' | 'pending' | 'in_progress' | 'completed' | 'cancelled';
+  owner: any;
+  team: any;
+  started_at: string | null;
+  completed_at: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -49,10 +53,10 @@ function Tasks() {
           <thead>
             <tr style={{ borderBottom: '2px solid #ddd' }}>
               <th style={{ padding: '10px', textAlign: 'left' }}>ID</th>
-              <th style={{ padding: '10px', textAlign: 'left' }}>Workflow Instance</th>
+              <th style={{ padding: '10px', textAlign: 'left' }}>Module Instance</th>
               <th style={{ padding: '10px', textAlign: 'left' }}>Task Definition</th>
               <th style={{ padding: '10px', textAlign: 'left' }}>Status</th>
-              <th style={{ padding: '10px', textAlign: 'left' }}>Assigned To</th>
+              <th style={{ padding: '10px', textAlign: 'left' }}>Owner</th>
               <th style={{ padding: '10px', textAlign: 'left' }}>Created At</th>
             </tr>
           </thead>
@@ -60,10 +64,10 @@ function Tasks() {
             {tasks.map((task) => (
               <tr key={task.id} style={{ borderBottom: '1px solid #eee' }}>
                 <td style={{ padding: '10px' }}>{task.id}</td>
-                <td style={{ padding: '10px' }}>{task.workflow_instance_id}</td>
+                <td style={{ padding: '10px' }}>{task.module_instance_id}</td>
                 <td style={{ padding: '10px' }}>{task.task_definition_id}</td>
                 <td style={{ padding: '10px' }}>{task.status}</td>
-                <td style={{ padding: '10px' }}>{task.assigned_to || 'Unassigned'}</td>
+                <td style={{ padding: '10px' }}>{task.owner?.name || 'Unassigned'}</td>
                 <td style={{ padding: '10px' }}>{new Date(task.created_at).toLocaleString()}</td>
               </tr>
             ))}

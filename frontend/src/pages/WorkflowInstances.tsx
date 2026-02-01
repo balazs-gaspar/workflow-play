@@ -5,10 +5,14 @@ import { supabase } from '../lib/supabase';
 interface WorkflowInstance {
   id: string;
   workflow_definition_id: string;
-  status: string;
+  status: 'new' | 'in_progress' | 'completed' | 'cancelled';
+  client: any;
+  team: any;
+  owner: any;
   created_at: string;
   updated_at: string;
-  created_by: string;
+  started_at: string | null;
+  completed_at: string | null;
 }
 
 function WorkflowInstances() {
@@ -51,7 +55,7 @@ function WorkflowInstances() {
               <th style={{ padding: '10px', textAlign: 'left' }}>ID</th>
               <th style={{ padding: '10px', textAlign: 'left' }}>Workflow Definition</th>
               <th style={{ padding: '10px', textAlign: 'left' }}>Status</th>
-              <th style={{ padding: '10px', textAlign: 'left' }}>Created By</th>
+              <th style={{ padding: '10px', textAlign: 'left' }}>Owner</th>
               <th style={{ padding: '10px', textAlign: 'left' }}>Created At</th>
               <th style={{ padding: '10px', textAlign: 'left' }}>Actions</th>
             </tr>
@@ -62,7 +66,7 @@ function WorkflowInstances() {
                 <td style={{ padding: '10px' }}>{workflow.id}</td>
                 <td style={{ padding: '10px' }}>{workflow.workflow_definition_id}</td>
                 <td style={{ padding: '10px' }}>{workflow.status}</td>
-                <td style={{ padding: '10px' }}>{workflow.created_by}</td>
+                <td style={{ padding: '10px' }}>{workflow.owner?.name || 'N/A'}</td>
                 <td style={{ padding: '10px' }}>{new Date(workflow.created_at).toLocaleString()}</td>
                 <td style={{ padding: '10px' }}>
                   <Link to={`/workflow/${workflow.id}`}>View Details</Link>

@@ -5,10 +5,9 @@ import { supabase } from '../lib/supabase';
 interface WorkflowDefinition {
   id: string;
   name: string;
-  description: string | null;
-  version: number;
+  description: string;
+  version: string;
   created_at: string;
-  updated_at: string;
 }
 
 function WorkflowDefinitions() {

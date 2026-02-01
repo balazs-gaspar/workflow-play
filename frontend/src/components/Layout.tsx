@@ -15,10 +15,10 @@ function Layout({ children }: LayoutProps) {
           <h1>Workflow Management System</h1>
           <nav>
             <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
-              Home
-            </Link>
-            <Link to="/workflows" className={location.pathname === '/workflows' ? 'active' : ''}>
               Workflows
+            </Link>
+            <Link to="/tasks" className={location.pathname === '/tasks' ? 'active' : ''}>
+              Tasks
             </Link>
           </nav>
         </div>

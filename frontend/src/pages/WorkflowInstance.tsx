@@ -1,60 +1,89 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
-
-interface WorkflowInstance {
-  id: string;
-  workflow_definition_id: string;
-  status: string;
-  created_at: string;
-  updated_at: string;
-  created_by: string;
-}
+import { useWorkflow } from '../hooks/useWorkflow';
 
 function WorkflowInstance() {
   const { id } = useParams<{ id: string }>();
-  const [workflow, setWorkflow] = useState<WorkflowInstance | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function fetchWorkflow() {
-      try {
-        const { data, error } = await supabase
-          .from('workflow_instances')
-          .select('*')
-          .eq('id', id)
-          .single();
-
-        if (error) throw error;
-        setWorkflow(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    if (id) {
-      fetchWorkflow();
-    }
-  }, [id]);
+  const { data, loading, error } = useWorkflow(id);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  if (!workflow) return <div>Workflow not found</div>;
+  if (!data) return <div>Workflow not found</div>;
 
   return (
     <div>
       <h1>Workflow Instance</h1>
-      <div>
-        <p><strong>ID:</strong> {workflow.id}</p>
-        <p><strong>Workflow Definition ID:</strong> {workflow.workflow_definition_id}</p>
-        <p><strong>Status:</strong> {workflow.status}</p>
-        <p><strong>Created At:</strong> {new Date(workflow.created_at).toLocaleString()}</p>
-        <p><strong>Updated At:</strong> {new Date(workflow.updated_at).toLocaleString()}</p>
-        <p><strong>Created By:</strong> {workflow.created_by}</p>
+      <div style={{ marginBottom: '30px' }}>
+        <p><strong>ID:</strong> {data.id}</p>
+        <p><strong>Workflow Definition:</strong> {data.workflow_definition?.name || data.workflow_definition_id}</p>
+        <p><strong>Status:</strong> {data.status}</p>
+        <p><strong>Client:</strong> {data.client.name || 'N/A'}</p>
+        <p><strong>Team:</strong> {data.team?.name || 'N/A'}</p>
+        <p><strong>Owner:</strong> {data.owner?.name || 'N/A'}</p>
+        <p><strong>Created At:</strong> {new Date(data.created_at).toLocaleString()}</p>
+        <p><strong>Updated At:</strong> {new Date(data.updated_at).toLocaleString()}</p>
+        {data.started_at && <p><strong>Started At:</strong> {new Date(data.started_at).toLocaleString()}</p>}
+        {data.completed_at && <p><strong>Completed At:</strong> {new Date(data.completed_at).toLocaleString()}</p>}
       </div>
+
+      <h2>Tasks by Module</h2>
+      {!data.modules || data.modules.length === 0 ? (
+        <p>No modules found for this workflow</p>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {data.modules.map((module) => (
+            <div
+              key={module.id}
+              style={{
+                border: '1px solid #ddd',
+                borderRadius: '8px',
+                padding: '20px',
+                backgroundColor: '#f9f9f9',
+              }}
+            >
+              <h3 style={{ marginTop: 0 }}>{module.module_definition?.name || 'Unknown Module'}</h3>
+              <p style={{ color: '#666', marginBottom: '15px' }}>
+                {module.module_definition?.description || ''}
+              </p>
+              <p style={{ marginBottom: '15px' }}>
+                <strong>Module Status:</strong> {module.status}
+              </p>
+
+              {!module.tasks || module.tasks.length === 0 ? (
+                <p style={{ fontStyle: 'italic', color: '#999' }}>No tasks in this module</p>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  {module.tasks.map((task) => (
+                    <div
+                      key={task.id}
+                      style={{
+                        border: '1px solid #ccc',
+                        borderRadius: '6px',
+                        padding: '15px',
+                        backgroundColor: '#fff',
+                      }}
+                    >
+                      <h4 style={{ marginTop: 0, marginBottom: '8px' }}>
+                        {task.task_definition?.name || 'Unknown Task'}
+                      </h4>
+                      <p style={{ color: '#666', marginBottom: '10px', fontSize: '14px' }}>
+                        {task.task_definition?.description || ''}
+                      </p>
+                      <div style={{ display: 'flex', gap: '20px', fontSize: '14px' }}>
+                        <span>
+                          <strong>Status:</strong> {task.status}
+                        </span>
+                        <span>
+                          <strong>Owner:</strong> {task.owner?.name || 'Unassigned'}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
