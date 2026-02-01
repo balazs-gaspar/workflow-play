@@ -1,44 +1,8 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { supabase } from '../lib/supabase';
-
-interface WorkflowInstance {
-  id: string;
-  workflow_definition_id: string;
-  status: 'new' | 'in_progress' | 'completed' | 'cancelled';
-  client: any;
-  team: any;
-  owner: any;
-  created_at: string;
-  updated_at: string;
-  started_at: string | null;
-  completed_at: string | null;
-}
+import { useWorkflows } from '../hooks/useWorkflows';
 
 function WorkflowInstances() {
-  const [workflows, setWorkflows] = useState<WorkflowInstance[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function fetchWorkflows() {
-      try {
-        const { data, error } = await supabase
-          .from('workflow_instances')
-          .select('*')
-          .order('created_at', { ascending: false });
-
-        if (error) throw error;
-        setWorkflows(data || []);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchWorkflows();
-  }, []);
+  const { data: workflows, loading, error } = useWorkflows();
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
