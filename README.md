@@ -8,10 +8,11 @@ The system uses a relational database approach with separate definition models f
 
 ## Technology Stack
 
-- **Frontend**: [Astro](https://astro.build) with React components
+- **Frontend**: [Vite](https://vitejs.dev) + [React](https://react.dev) + TypeScript
 - **Backend**: [Supabase](https://supabase.com) (PostgreSQL database with REST API)
+- **Routing**: [React Router](https://reactrouter.com)
 - **Deployment**: GitHub Pages with GitHub Actions
-- **Styling**: CSS (scoped styles in components)
+- **Styling**: CSS Modules
 - **Language**: TypeScript
 
 ## Architecture
@@ -68,7 +69,7 @@ From these definitions, instance models are created for actual workflow executio
 - **Team Collaboration**: Assign tasks to team members and track progress
 - **Status Tracking**: Monitor workflow and task statuses in real-time
 - **Recommendation System**: POC for intelligent task and resource recommendations
-- **Web Application**: Astro + React frontend with Supabase backend
+- **Web Application**: Vite + React + TypeScript frontend with Supabase backend
 - **GitHub Pages Deployment**: Automatic deployment via GitHub Actions
 - **No Authentication Required**: Public read-only access to workflow data
 
@@ -77,16 +78,16 @@ From these definitions, instance models are created for actual workflow executio
 The application is deployed to GitHub Pages and can be accessed at:
 **https://balazs-gaspar.github.io/workflow-play/**
 
-The frontend is built with Astro and React, using Supabase as the backend database.
+The frontend is built with Vite, React, and TypeScript, using Supabase as the backend database.
 
 ## Project Structure
 
 ```
 workflow-play/
-├── frontend/              # Astro + React frontend application
+├── frontend/              # Vite + React + TypeScript frontend
 │   ├── src/
 │   │   ├── components/   # React components
-│   │   ├── layouts/      # Astro layouts
+│   │   ├── pages/        # Page components
 │   │   ├── lib/          # Supabase client and utilities
 │   │   └── pages/        # Page routes
 │   └── README.md         # Frontend documentation

@@ -53,11 +53,11 @@ This guide walks you through setting up the Workflow Management System with Supa
 2. Navigate to **Settings** > **Secrets and variables** > **Actions**
 3. Click "New repository secret"
 4. Add the first secret:
-   - **Name**: `PUBLIC_SUPABASE_URL`
+   - **Name**: `VITE_SUPABASE_URL`
    - **Secret**: Paste your Supabase Project URL
 5. Click "Add secret"
 6. Add the second secret:
-   - **Name**: `PUBLIC_SUPABASE_ANON_KEY`
+   - **Name**: `VITE_SUPABASE_ANON_KEY`
    - **Secret**: Paste your Supabase anon public key
 7. Click "Add secret"
 
@@ -113,8 +113,8 @@ npm install
 
 2. Edit the `.env` file and add your Supabase credentials:
    ```env
-   PUBLIC_SUPABASE_URL=https://xxxxxxxxxxxxx.supabase.co
-   PUBLIC_SUPABASE_ANON_KEY=your_anon_public_key
+   VITE_SUPABASE_URL=https://xxxxxxxxxxxxx.supabase.co
+   VITE_SUPABASE_ANON_KEY=your_anon_public_key
    ```
 
 ### 4.4 Run Development Server
@@ -122,6 +122,8 @@ npm install
 ```bash
 npm run dev
 ```
+
+Visit `http://localhost:5173` to see the application running locally.
 
 Visit `http://localhost:4321` to see the application running locally.
 

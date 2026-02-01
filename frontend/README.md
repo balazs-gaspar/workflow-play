@@ -1,12 +1,13 @@
 # Workflow Management System - Frontend
 
-This is an Astro-based frontend application with React components that connects to Supabase to display workflow management data.
+This is a Vite + React + TypeScript frontend application that connects to Supabase to display workflow management data.
 
 ## Features
 
-- 🚀 Built with [Astro](https://astro.build) for optimal performance
-- ⚛️ React components for interactive UI
+- ⚡ Built with [Vite](https://vitejs.dev) for fast development and optimal performance
+- ⚛️ React 18 with TypeScript for type-safe development
 - 🗄️ Supabase integration for real-time data
+- 🔀 React Router for client-side routing
 - 📱 Responsive design
 - 🎨 Clean, modern UI
 
@@ -29,8 +30,8 @@ npm install
 Create a `.env` file in the `frontend` directory:
 
 ```env
-PUBLIC_SUPABASE_URL=your_supabase_project_url
-PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 Get these values from your Supabase project dashboard (Settings > API).
@@ -41,7 +42,7 @@ Get these values from your Supabase project dashboard (Settings > API).
 npm run dev
 ```
 
-The application will be available at `http://localhost:4321`
+The application will be available at `http://localhost:5173`
 
 ## Available Scripts
 
@@ -55,16 +56,21 @@ The application will be available at `http://localhost:4321`
 frontend/
 ├── src/
 │   ├── components/      # React components
+│   │   ├── Layout.tsx
+│   │   ├── Layout.css
 │   │   └── WorkflowList.tsx
-│   ├── layouts/         # Astro layouts
-│   │   └── Layout.astro
 │   ├── lib/            # Utilities and configs
 │   │   └── supabase.ts
-│   └── pages/          # Page routes
-│       ├── index.astro
-│       └── workflows.astro
+│   ├── pages/          # Page components
+│   │   ├── Home.tsx
+│   │   ├── Home.css
+│   │   └── Workflows.tsx
+│   ├── App.tsx         # Main app component with routing
+│   ├── main.tsx        # Entry point
+│   └── index.css       # Global styles
 ├── public/             # Static assets
-├── astro.config.mjs    # Astro configuration
+├── index.html          # HTML template
+├── vite.config.ts      # Vite configuration
 ├── tsconfig.json       # TypeScript configuration
 └── package.json
 ```
@@ -78,6 +84,19 @@ A React component that fetches and displays workflow definitions from Supabase. 
 - Shows workflow details (name, description, version)
 - Expandable to show related modules
 - Loading and error states
+
+### Layout
+
+Main layout component that includes:
+- Header with navigation
+- Responsive navigation menu
+- Active route highlighting
+
+## Routing
+
+The application uses React Router for client-side routing:
+- `/` - Home page with feature overview
+- `/workflows` - Workflows page with data from Supabase
 
 ## Deployment
 
@@ -98,19 +117,20 @@ The repository includes a GitHub Actions workflow (`.github/workflows/deploy.yml
 Make sure to:
 1. Enable GitHub Pages in repository settings
 2. Set source to "GitHub Actions"
-3. Add Supabase secrets to repository settings
+3. Add Supabase secrets to repository settings:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
 
 ## Configuration
 
-### Astro Config
+### Vite Config
 
-The `astro.config.mjs` is configured for GitHub Pages deployment with:
+The `vite.config.ts` is configured for GitHub Pages deployment with:
 - Base path: `/workflow-play`
-- Site: `https://balazs-gaspar.github.io`
-- Static output mode
-- React integration
+- Output directory: `dist`
+- React plugin with Fast Refresh
 
-Update the `site` and `base` values if deploying to a different location.
+Update the `base` value if deploying to a different location.
 
 ## Data Models
 
@@ -126,6 +146,8 @@ See `/supabase/README.md` for database schema details.
 
 ## Learn More
 
-- [Astro Documentation](https://docs.astro.build)
+- [Vite Documentation](https://vitejs.dev)
 - [React Documentation](https://react.dev)
+- [React Router Documentation](https://reactrouter.com)
 - [Supabase Documentation](https://supabase.com/docs)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
