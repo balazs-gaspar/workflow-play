@@ -125,8 +125,6 @@ npm run dev
 
 Visit `http://localhost:5173` to see the application running locally.
 
-Visit `http://localhost:4321` to see the application running locally.
-
 ### 4.5 Build for Production
 
 ```bash
