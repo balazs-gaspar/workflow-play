@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 import { useUser } from '../contexts/UserContext';
 import { supabase } from '../lib/supabase';
 import './Layout.css';
@@ -10,6 +11,7 @@ interface LayoutProps {
 
 function Layout({ children }: LayoutProps) {
   const location = useLocation();
+  const { signOut } = useAuth();
   const { user, setUser } = useUser();
   const [users, setUsers] = useState<any[]>([]);
 
@@ -44,25 +46,34 @@ function Layout({ children }: LayoutProps) {
     });
   };
 
+  const handleLogout = async () => {
+    await signOut();
+  };
+
   return (
     <div>
       <header>
         <div className="container">
           <div className="header-top">
             <h1>Workflow Management System</h1>
-            <div className="user-selector">
-              <label htmlFor="user-select">Current User:</label>
-              <select 
-                id="user-select"
-                value={user?.id || ''} 
-                onChange={(e) => handleUserChange(e.target.value)}
-              >
-                {users.map(u => (
-                  <option key={u.id} value={u.id}>
-                    {u.name} ({u.role})
-                  </option>
-                ))}
-              </select>
+            <div className="header-actions">
+              <div className="user-selector">
+                <label htmlFor="user-select">Current User:</label>
+                <select 
+                  id="user-select"
+                  value={user?.id || ''} 
+                  onChange={(e) => handleUserChange(e.target.value)}
+                >
+                  {users.map(u => (
+                    <option key={u.id} value={u.id}>
+                      {u.name} ({u.role})
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button onClick={handleLogout} className="logout-btn">
+                Sign Out
+              </button>
             </div>
           </div>
           <nav>

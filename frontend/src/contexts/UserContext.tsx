@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
+import { useAuth } from './AuthContext';
 
 interface User {
   id: string;
@@ -20,16 +21,22 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { user: authUser } = useAuth();
 
   useEffect(() => {
-    // In a real app, this would get the user from authentication
-    // For now, we'll load a default user
     const loadUser = async () => {
+      if (!authUser) {
+        setUser(null);
+        setIsLoading(false);
+        return;
+      }
+
       try {
+        // Load user data from database matching the authenticated user's email
         const { data, error } = await supabase
           .from('users')
           .select('*')
-          .eq('id', 'user-1')
+          .eq('email', authUser.email)
           .single();
 
         if (error) throw error;
@@ -47,13 +54,14 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         });
       } catch (error) {
         console.error('Error loading user:', error);
+        setUser(null);
       } finally {
         setIsLoading(false);
       }
     };
 
     loadUser();
-  }, []);
+  }, [authUser]);
 
   return (
     <UserContext.Provider value={{ user, setUser, isLoading }}>
